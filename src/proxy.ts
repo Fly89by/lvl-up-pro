@@ -1,6 +1,10 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import createIntlMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+
+const intlMiddleware = createIntlMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request });
@@ -27,6 +31,10 @@ export async function proxy(request: NextRequest) {
   );
 
   await supabase.auth.getUser();
+
+  const intlResponse = intlMiddleware(request);
+  if (intlResponse) return intlResponse;
+
   return supabaseResponse;
 }
 
