@@ -9,6 +9,8 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
+SET search_path TO public, extensions;
+
 CREATE TYPE org_plan_type AS ENUM ('free', 'growth', 'professional', 'enterprise');
 CREATE TYPE billing_status AS ENUM ('active', 'past_due', 'canceled', 'trialing');
 CREATE TYPE user_role AS ENUM ('super_admin', 'org_admin', 'manager', 'inspector');
@@ -34,7 +36,7 @@ CREATE TYPE media_type AS ENUM ('image', 'video', 'document', 'audio');
 
 -- 2.1 organizations
 CREATE TABLE organizations (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name VARCHAR(255) NOT NULL,
   slug VARCHAR(100) UNIQUE NOT NULL,
   logo_url TEXT,
@@ -50,7 +52,7 @@ CREATE TABLE organizations (
 
 -- 2.2 users
 CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   email VARCHAR(255) NOT NULL,
   full_name VARCHAR(255) NOT NULL,
@@ -68,7 +70,7 @@ CREATE TABLE users (
 
 -- 2.3 branches
 CREATE TABLE branches (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   address TEXT,
@@ -92,7 +94,7 @@ CREATE TABLE user_branches (
 
 -- 2.5 templates
 CREATE TABLE templates (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID REFERENCES organizations(id) ON DELETE CASCADE,
   created_by UUID NOT NULL REFERENCES users(id),
   title VARCHAR(255) NOT NULL,
@@ -109,7 +111,7 @@ CREATE TABLE templates (
 
 -- 2.6 inspections
 CREATE TABLE inspections (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   branch_id UUID NOT NULL REFERENCES branches(id) ON DELETE CASCADE,
   template_id UUID NOT NULL REFERENCES templates(id),
@@ -130,7 +132,7 @@ CREATE TABLE inspections (
 
 -- 2.7 inspection_answers
 CREATE TABLE inspection_answers (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   inspection_id UUID NOT NULL REFERENCES inspections(id) ON DELETE CASCADE,
   question_id VARCHAR(100) NOT NULL,
   question_type question_type NOT NULL,
@@ -142,7 +144,7 @@ CREATE TABLE inspection_answers (
 
 -- 2.8 inspection_media
 CREATE TABLE inspection_media (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   inspection_id UUID NOT NULL REFERENCES inspections(id) ON DELETE CASCADE,
   answer_id UUID REFERENCES inspection_answers(id) ON DELETE SET NULL,
   file_url TEXT NOT NULL,
@@ -153,7 +155,7 @@ CREATE TABLE inspection_media (
 
 -- 2.9 issues
 CREATE TABLE issues (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   inspection_id UUID REFERENCES inspections(id) ON DELETE SET NULL,
   branch_id UUID NOT NULL REFERENCES branches(id) ON DELETE CASCADE,
@@ -171,7 +173,7 @@ CREATE TABLE issues (
 
 -- 2.10 tasks
 CREATE TABLE tasks (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   branch_id UUID NOT NULL REFERENCES branches(id) ON DELETE CASCADE,
   issue_id UUID REFERENCES issues(id) ON DELETE SET NULL,
@@ -189,7 +191,7 @@ CREATE TABLE tasks (
 
 -- 2.11 task_comments
 CREATE TABLE task_comments (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   task_id UUID NOT NULL REFERENCES tasks(id) ON DELETE CASCADE,
   user_id UUID NOT NULL REFERENCES users(id),
   content TEXT NOT NULL,
@@ -198,7 +200,7 @@ CREATE TABLE task_comments (
 
 -- 2.12 notifications
 CREATE TABLE notifications (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   type notification_type NOT NULL DEFAULT 'system',
@@ -213,7 +215,7 @@ CREATE TABLE notifications (
 
 -- 2.13 subscriptions
 CREATE TABLE subscriptions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   plan_type org_plan_type NOT NULL DEFAULT 'free',
   billing_cycle billing_cycle NOT NULL DEFAULT 'monthly',
@@ -233,7 +235,7 @@ CREATE TABLE subscriptions (
 
 -- 2.14 audit_logs
 CREATE TABLE audit_logs (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   user_id UUID REFERENCES users(id) ON DELETE SET NULL,
   action audit_action NOT NULL,
@@ -247,7 +249,7 @@ CREATE TABLE audit_logs (
 
 -- 2.15 qr_codes
 CREATE TABLE qr_codes (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
   branch_id UUID REFERENCES branches(id) ON DELETE CASCADE,
   template_id UUID REFERENCES templates(id) ON DELETE SET NULL,
