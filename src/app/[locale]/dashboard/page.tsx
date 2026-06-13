@@ -3,32 +3,33 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { Store, ShieldCheck, AlertTriangle, TrendingUp, Building2, Users, ClipboardCheck, ListChecks } from "lucide-react";
+import { Store, ShieldCheck, AlertTriangle, TrendingUp, Users, ListChecks } from "lucide-react";
 import AIRecommendations from "@/components/dashboard/AIRecommendations";
 
-interface StatCard {
+interface StatCardProps {
   label: string;
   value: string | number;
   icon: React.ReactNode;
+  color: string;
+  gradient: string;
   trend?: string;
   trendUp?: boolean;
-  color: string;
 }
 
-function StatCard({ label, value, icon, trend, trendUp, color }: StatCard) {
+function StatCard({ label, value, icon, color, gradient, trend, trendUp }: StatCardProps) {
   return (
-    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-surface-100 shadow-sm glass-card">
+    <div className="glass-card rounded-2xl p-6 hover:border-brand-500/20 transition-all duration-300 hover:-translate-y-0.5">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-surface-500">{label}</p>
-          <p className="text-2xl font-bold text-surface-900 mt-1">{value}</p>
+          <p className="text-sm font-medium text-surface-400">{label}</p>
+          <p className="text-3xl font-bold text-white mt-1">{value}</p>
           {trend && (
-            <p className={`text-xs font-medium mt-1 ${trendUp ? "text-emerald-600" : "text-red-500"}`}>
+            <p className={`text-xs font-medium mt-1 ${trendUp ? "text-emerald-400" : "text-red-400"}`}>
               {trend}
             </p>
           )}
         </div>
-        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${color}`}>
+        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center shadow-lg`}>
           {icon}
         </div>
       </div>
@@ -85,20 +86,20 @@ export default function DashboardOverview() {
     );
   }
 
-  const cards: StatCard[] = [
-    { label: t("totalBranches"), value: stats.branches, icon: <Store className="w-6 h-6 text-white" />, color: "bg-violet-500", trend: "", trendUp: true },
-    { label: t("totalUsers"), value: stats.users, icon: <Users className="w-6 h-6 text-white" />, color: "bg-blue-500", trend: "", trendUp: true },
-    { label: t("activeInspections"), value: stats.inspections, icon: <ShieldCheck className="w-6 h-6 text-white" />, color: "bg-emerald-500", trend: "", trendUp: true },
-    { label: t("openIssues"), value: stats.openIssues, icon: <AlertTriangle className="w-6 h-6 text-white" />, color: "bg-amber-500", trend: "", trendUp: false },
-    { label: t("avgScore"), value: `${stats.avgScore}%`, icon: <TrendingUp className="w-6 h-6 text-white" />, color: "bg-rose-500", trend: "", trendUp: true },
-    { label: t("pendingTasks"), value: stats.pendingTasks, icon: <ListChecks className="w-6 h-6 text-white" />, color: "bg-cyan-500", trend: "", trendUp: false },
+  const cards: StatCardProps[] = [
+    { label: t("totalBranches"), value: stats.branches, icon: <Store className="w-6 h-6 text-white" />, gradient: "from-violet-500 to-violet-700", color: "violet" },
+    { label: t("totalUsers"), value: stats.users, icon: <Users className="w-6 h-6 text-white" />, gradient: "from-blue-500 to-blue-700", color: "blue" },
+    { label: t("activeInspections"), value: stats.inspections, icon: <ShieldCheck className="w-6 h-6 text-white" />, gradient: "from-emerald-500 to-emerald-700", color: "emerald" },
+    { label: t("openIssues"), value: stats.openIssues, icon: <AlertTriangle className="w-6 h-6 text-white" />, gradient: "from-amber-500 to-amber-700", color: "amber" },
+    { label: t("avgScore"), value: `${stats.avgScore}%`, icon: <TrendingUp className="w-6 h-6 text-white" />, gradient: "from-rose-500 to-rose-700", color: "rose" },
+    { label: t("pendingTasks"), value: stats.pendingTasks, icon: <ListChecks className="w-6 h-6 text-white" />, gradient: "from-cyan-500 to-cyan-700", color: "cyan" },
   ];
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">{t("welcome")}</h1>
-        <p className="text-surface-500 text-sm mt-1">{t("subtitle")}</p>
+        <h1 className="text-xl font-bold text-white animate-fade-in-up">{t("welcome")}</h1>
+        <p className="text-surface-400 text-sm mt-1">{t("subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

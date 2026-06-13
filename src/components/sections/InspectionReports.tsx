@@ -1,37 +1,48 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import { FileText, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
+import { FileText, CheckCircle, Camera, PenSquare, BarChart3, FileSpreadsheet } from "lucide-react";
+
+const features = [
+  { icon: Camera, label: "Photos & Video" },
+  { icon: PenSquare, label: "Digital Signature" },
+  { icon: BarChart3, label: "Auto Scoring" },
+  { icon: FileSpreadsheet, label: "PDF Reports" },
+];
 
 export default function InspectionReports() {
   const t = useTranslations("inspectionReports");
 
   return (
-    <section className="section-padding bg-surface-50">
-      <div className="container-main">
-        <div className="flex flex-col lg:flex-row-reverse items-center gap-12">
-          <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
-              {t("title")}
-            </h2>
-            <p className="text-lg text-surface-500 mb-2">
-              {t("subtitle")}
-            </p>
-            <p className="text-surface-600 leading-relaxed mb-8">
-              {t("description")}
-            </p>
-            <ul className="space-y-3">
-              {["Photos & Video", "Digital Signature", "Auto Scoring", "PDF Reports"].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm text-surface-700">
-                  <CheckCircle className="w-5 h-5 text-accent-500 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex-1 w-full">
-            <div className="glass-card aspect-[4/3] rounded-2xl bg-white border border-surface-200 shadow-xl flex items-center justify-center">
-              <FileText className="w-12 h-12 text-surface-300" />
+    <section className="section-dark section-padding">
+      <div className="container-main relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            className="order-2 lg:order-1"
+          >
+            <div className="glass-card rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=700&q=80" alt="Inspection Report" className="w-full h-auto" loading="lazy" />
             </div>
-          </div>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+            className="order-1 lg:order-2"
+          >
+            <span className="text-xs font-semibold text-brand-400 uppercase tracking-[0.2em]">{t("subtitle")}</span>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-4 mb-6">{t("title")}</h2>
+            <p className="text-surface-400 leading-relaxed mb-8">{t("description")}</p>
+            <div className="grid grid-cols-2 gap-4">
+              {features.map((f) => (
+                <div key={f.label} className="flex items-center gap-3 text-sm text-surface-300 glass-card rounded-xl px-4 py-3">
+                  <div className="w-8 h-8 rounded-lg bg-brand-500/15 flex items-center justify-center shrink-0">
+                    <f.icon className="w-4 h-4 text-brand-400" />
+                  </div>
+                  {f.label}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

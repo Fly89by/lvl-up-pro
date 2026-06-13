@@ -18,17 +18,19 @@
     }
   },
   "hero": {
-    "title": "Boost Your Branches' Performance\nwith Intelligence & Precision",
+    "badge": "AI-Powered Analytics Platform",
+    "title": "Transform Your Branches\nwith AI Analytics",
     "subtitle": "An integrated platform for performance analysis and smart inspection — track, evaluate, and develop your branches all in one place",
-    "ctaPrimary": "Contact Us",
-    "ctaSecondary": "Sign Up Now"
+    "ctaPrimary": "Watch Demo",
+    "ctaSecondary": "Get Started"
   },
   "trustBar": {
     "title": "Trusted by Industry Leaders"
   },
   "features": {
-    "title": "Why Choose Our Platform?",
-    "subtitle": "Smart tools to improve performance quality in your organization",
+    "title": "Why Choose Tamayuz?",
+    "subtitle": "Features",
+    "subtitle2": "Smart tools to improve performance quality in your organization",
     "item1": {
       "title": "Issue Detection",
       "desc": "AI-powered system detects deviations and challenges before they escalate"
@@ -46,8 +48,13 @@
     "title": "Return on Investment",
     "subtitle": "Numbers speak for themselves",
     "quality": "Quality Improvement",
+    "qualityValue": "+40",
     "issues": "Issues Reduction",
+    "issuesValue": "-60",
     "sales": "Sales Increase",
+    "salesValue": "+25",
+    "satisfaction": "Client Satisfaction",
+    "satisfactionValue": "95",
     "hours": "Hours Saved"
   },
   "accuracy": {
@@ -142,17 +149,23 @@
     "q3": "Does the platform support English?",
     "a3": "Yes, the platform fully supports both Arabic and English.",
     "q4": "How do I get started?",
-    "a4": "Sign up for a free account and start immediately, or contact us for a personalized consultation."
+    "a4": "Sign up for a free account and start immediately, or contact us for a personalized consultation.",
+    "q5": "Is the platform mobile-friendly?",
+    "a5": "Yes, the platform is fully compatible with all mobile and tablet devices.",
+    "q6": "Can I integrate with my existing systems?",
+    "a6": "Yes, we provide a comprehensive API and integration services with most accounting and management systems."
   },
   "contact": {
     "title": "Contact Us",
     "subtitle": "We're here to answer your questions",
     "name": "Name",
+    "namePlh": "Your name",
     "email": "Email",
+    "emailPlh": "you@email.com",
     "company": "Company",
     "phone": "Phone",
     "message": "Message",
-    "submit": "Send",
+    "submit": "Send Message",
     "success": "Your message has been sent successfully. We'll get back to you soon."
   },
   "blog": {
@@ -160,6 +173,10 @@
     "readMore": "Read More"
   },
   "footer": {
+    "description": "AI-powered platform for branch performance analysis and smart inspection.",
+    "platform": "Platform",
+    "company": "Company",
+    "legal": "Legal",
     "rights": "All rights reserved",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service"

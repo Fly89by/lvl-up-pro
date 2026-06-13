@@ -30,44 +30,39 @@ export default function AIRecommendations() {
 
   if (!data || (!data.recommendations?.length && !data.critical_issues?.length)) return null;
 
-  const priorityColors: Record<string, string> = {
-    high: "bg-red-50 border-red-200 border",
-    medium: "bg-amber-50 border-amber-200 border",
-    low: "bg-blue-50 border-blue-200 border",
-  };
-  const priorityTextColors: Record<string, string> = {
-    high: "text-red-700",
-    medium: "text-amber-700",
-    low: "text-blue-700",
+  const priorityBorder: Record<string, string> = {
+    high: "border-red-500/30 bg-red-500/5",
+    medium: "border-amber-500/30 bg-amber-500/5",
+    low: "border-blue-500/30 bg-blue-500/5",
   };
   const priorityBadge: Record<string, string> = {
-    high: "bg-red-100 text-red-700 border border-red-200",
-    medium: "bg-amber-100 text-amber-700 border border-amber-200",
-    low: "bg-blue-100 text-blue-700 border border-blue-200",
+    high: "bg-red-500/15 text-red-400 border border-red-500/20",
+    medium: "bg-amber-500/15 text-amber-400 border border-amber-500/20",
+    low: "bg-blue-500/15 text-blue-400 border border-blue-500/20",
   };
 
   return (
-    <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-5 space-y-4 glass-card">
+    <div className="glass-card rounded-2xl p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Lightbulb className="w-5 h-5 text-amber-500" />
-          <h3 className="text-sm font-bold text-surface-900">AI Recommendations</h3>
-          <span className="text-[10px] text-surface-400 bg-surface-100 px-1.5 py-0.5 rounded">Nemotron 3 Ultra</span>
+          <Lightbulb className="w-5 h-5 text-amber-400" />
+          <h3 className="text-sm font-bold text-white">AI Recommendations</h3>
+          <span className="text-[10px] text-surface-500 bg-white/5 px-1.5 py-0.5 rounded">Nemotron 3 Ultra</span>
         </div>
-        <button onClick={load} className="p-1.5 rounded-lg text-surface-400 hover:text-brand-600 hover:bg-brand-50 transition-colors">
+        <button onClick={load} className="p-1.5 rounded-lg text-surface-400 hover:text-brand-400 hover:bg-brand-500/10 transition-colors">
           <RefreshCw className="w-3.5 h-3.5" />
         </button>
       </div>
 
       {data.critical_issues?.length > 0 && (
         <div className="space-y-2">
-          <p className="text-xs font-semibold text-red-600 flex items-center gap-1">
+          <p className="text-xs font-semibold text-red-400 flex items-center gap-1">
             <AlertTriangle className="w-3 h-3" /> Critical Issues
           </p>
           {data.critical_issues.map((ci, i) => (
-            <div key={i} className="bg-red-50 rounded-xl px-3 py-2 border border-red-100">
-              <p className="text-xs font-medium text-red-800">{ci.issue}</p>
-              <p className="text-xs text-red-600 mt-0.5">{ci.action}</p>
+            <div key={i} className="bg-red-500/10 rounded-xl px-3 py-2 border border-red-500/20">
+              <p className="text-xs font-medium text-red-300">{ci.issue}</p>
+              <p className="text-xs text-red-400/80 mt-0.5">{ci.action}</p>
             </div>
           ))}
         </div>
@@ -76,16 +71,16 @@ export default function AIRecommendations() {
       {data.recommendations?.length > 0 && (
         <div className="space-y-2">
           {data.recommendations.map((rec, i) => (
-            <div key={i} className={`rounded-xl px-3 py-2.5 border ${priorityColors[rec.priority] || priorityColors.low}`}>
+            <div key={i} className={`rounded-xl px-3 py-2.5 border ${priorityBorder[rec.priority] || priorityBorder.low}`}>
               <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold text-surface-800">{rec.title}</p>
+                <p className="text-xs font-semibold text-white">{rec.title}</p>
                 <span className={`shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium ${priorityBadge[rec.priority] || priorityBadge.low}`}>
                   {rec.priority}
                 </span>
               </div>
-              <p className="text-xs text-surface-600 mt-1">{rec.description}</p>
+              <p className="text-xs text-surface-400 mt-1">{rec.description}</p>
               {rec.category && (
-                <span className="inline-block mt-1 text-[10px] text-surface-400 bg-surface-100 px-1.5 py-0.5 rounded">{rec.category}</span>
+                <span className="inline-block mt-1 text-[10px] text-surface-500 bg-white/5 px-1.5 py-0.5 rounded">{rec.category}</span>
               )}
             </div>
           ))}

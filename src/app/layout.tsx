@@ -16,18 +16,14 @@ const notoKufi = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "LVL Up — Branch Performance Analytics",
-  description: "Integrated platform for branch performance analysis and smart inspection",
+  title: "Tamayuz — Branch Performance Analytics Platform",
+  description: "AI-powered platform for branch performance analysis, smart inspection, and operational excellence.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html className={`${inter.variable} ${notoKufi.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-surface-50 text-surface-900">{children}</body>
+      <body className="min-h-full flex flex-col bg-surface-950 text-surface-50">{children}</body>
     </html>
   );
 }

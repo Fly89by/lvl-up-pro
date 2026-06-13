@@ -9,7 +9,7 @@ import type { User } from "@supabase/supabase-js";
 import {
   LayoutDashboard, Store, Users, ClipboardCheck, ShieldCheck,
   AlertTriangle, ListChecks, BarChart3, LogOut, Menu, X,
-  ChevronLeft, ChevronRight, Building2, Settings, Bell, QrCode
+  ChevronLeft, ChevronRight, Building2, Settings, Bell, QrCode, ChevronRight as ChevronRightIcon
 } from "lucide-react";
 import AIAssistant from "@/components/dashboard/AIAssistant";
 
@@ -54,23 +54,28 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-surface-50">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full" />
+      <div className="min-h-screen flex items-center justify-center bg-surface-950">
+        <div className="animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-surface-50 flex">
-      <aside className={`fixed top-0 bottom-0 z-40 flex flex-col glass border-r border-surface-200/50 transition-all duration-300 left-0 ${sidebarOpen ? "w-64" : "w-16"}`}>
-        <div className="flex items-center justify-between h-16 px-4 border-b border-surface-200/50">
+    <div className="min-h-screen bg-surface-950 flex">
+      <aside className={`fixed top-0 bottom-0 z-40 flex flex-col glass border-r border-brand-500/10 transition-all duration-300 left-0 ${sidebarOpen ? "w-64" : "w-16"}`}>
+        <div className="flex items-center justify-between h-16 px-4 border-b border-brand-500/10">
           {sidebarOpen && (
             <Link href="/" className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg gradient-brand" />
-              <span className="font-bold text-surface-900">LVL Up</span>
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
+                <LayoutDashboard className="w-4 h-4 text-white" />
+              </div>
+              <span className="font-bold text-white">Tamayuz</span>
             </Link>
           )}
-          {!sidebarOpen && <Link href="/"><div className="w-7 h-7 rounded-lg gradient-brand mx-auto" /></Link>}
+          {!sidebarOpen && <Link href="/"><div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 mx-auto" /></Link>}
+          <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-1.5 rounded-lg text-surface-400 hover:text-white hover:bg-white/5 transition-colors">
+            <ChevronLeft className={`w-4 h-4 transition-transform ${sidebarOpen ? "" : "rotate-180"}`} />
+          </button>
         </div>
 
         <nav className="flex-1 py-4 space-y-1 px-2 overflow-y-auto">
@@ -78,13 +83,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             const Icon = link.icon;
             const isActive = pathname === `/dashboard${link.href}`;
             return (
-              <Link
-                key={link.key}
-                href={`/dashboard${link.href}`}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
+              <Link key={link.key} href={`/dashboard${link.href}`}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? "glass-card text-brand-700 font-semibold border border-brand-200/50"
-                    : "text-surface-600 hover:bg-surface-100 hover:text-surface-900"
+                    ? "bg-brand-500/15 text-brand-300 border border-brand-500/20"
+                    : "text-surface-400 hover:text-white hover:bg-white/5"
                 }`}
               >
                 <Icon className="w-5 h-5 shrink-0" />
@@ -94,19 +97,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
-        <div className="border-t border-surface-200/50 p-2 space-y-1">
-          <Link
-            href="/dashboard/settings"
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
-              pathname.includes("/settings") ? "glass-card text-brand-700 font-semibold border border-brand-200/50" : "text-surface-600 hover:bg-surface-100 hover:text-surface-900"
+        <div className="border-t border-brand-500/10 p-2 space-y-1">
+          <Link href="/dashboard/settings"
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+              pathname.includes("/settings") ? "bg-brand-500/15 text-brand-300" : "text-surface-400 hover:text-white hover:bg-white/5"
             }`}
           >
             <Settings className="w-5 h-5 shrink-0" />
             {sidebarOpen && <span>{t("settings")}</span>}
           </Link>
-          <button
-            onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50/50 transition-all duration-200 hover:scale-[1.02]"
+          <button onClick={handleSignOut}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400 hover:bg-red-500/10 transition-all duration-200"
           >
             <LogOut className="w-5 h-5 shrink-0" />
             {sidebarOpen && <span>{t("signOut")}</span>}
@@ -115,24 +116,23 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-16"}`}>
-        <header className="sticky top-0 z-30 h-16 glass border-b border-surface-200/50 flex items-center justify-between px-6">
-          <button
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-xl text-surface-500 hover:bg-surface-100 transition-colors"
+        <header className="sticky top-0 z-30 h-16 glass border-b border-brand-500/10 flex items-center justify-between px-6">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="p-2 rounded-xl text-surface-400 hover:text-white hover:bg-white/5 transition-colors"
           >
-            {sidebarOpen ? <ChevronRight className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <Menu className="w-5 h-5" />
           </button>
 
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-xl text-surface-500 hover:bg-surface-100 transition-colors relative">
+            <button className="p-2 rounded-xl text-surface-400 hover:text-white hover:bg-white/5 transition-colors relative">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500" />
             </button>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-100">
-              <div className="w-7 h-7 rounded-full gradient-brand flex items-center justify-center text-white text-xs font-bold">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 border border-white/5">
+              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white text-xs font-bold">
                 {user?.email?.charAt(0).toUpperCase()}
               </div>
-              <span className="text-sm font-medium text-surface-700 max-w-[120px] truncate">{user?.email}</span>
+              <span className="text-sm font-medium text-surface-300 max-w-[120px] truncate">{user?.email}</span>
             </div>
           </div>
         </header>
