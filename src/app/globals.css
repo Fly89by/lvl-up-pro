@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-50: #F3F0FF;
+  --color-brand-100: #E9E0FF;
+  --color-brand-200: #D4C0FF;
+  --color-brand-300: #B490FF;
+  --color-brand-400: #9357FF;
+  --color-brand-500: #7C3AED;
+  --color-brand-600: #6D28D9;
+  --color-brand-700: #5B21B6;
+  --color-brand-800: #4C1D95;
+  --color-brand-900: #3B1278;
+
+  --color-accent-50: #ECFDF5;
+  --color-accent-100: #D1FAE5;
+  --color-accent-200: #A7F3D0;
+  --color-accent-300: #6EE7B7;
+  --color-accent-400: #34D399;
+  --color-accent-500: #10B981;
+  --color-accent-600: #059669;
+  --color-accent-700: #047857;
+  --color-accent-800: #065F46;
+  --color-accent-900: #064E3B;
+
+  --font-sans: var(--font-geist-sans);
+  --font-arabic: var(--font-cairo);
+}
+
+@utility container-main {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+@utility section-padding {
+  padding-block: 5rem;
+}
+
+@utility gradient-brand {
+  background-image: linear-gradient(135deg, var(--color-brand-500), var(--color-accent-500));
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility gradient-text {
+  background-image: linear-gradient(135deg, var(--color-brand-400), var(--color-accent-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
