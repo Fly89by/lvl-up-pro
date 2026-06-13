@@ -17,10 +17,10 @@ export default function Challenges() {
     <section className="section-padding bg-white">
       <div className="container-main">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
             {t("title")}
           </h2>
-          <p className="text-lg text-zinc-600">
+          <p className="text-lg text-surface-600">
             {t("subtitle")}
           </p>
         </div>
@@ -31,12 +31,12 @@ export default function Challenges() {
             return (
               <div key={i} className="relative group">
                 <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-br from-brand-100 to-accent-100 opacity-0 group-hover:opacity-100 transition-opacity blur" />
-                <div className="relative bg-white rounded-2xl p-6 border border-zinc-100 group-hover:border-transparent transition-all">
+                <div className="glass-card relative bg-white rounded-2xl p-6 border border-surface-100 group-hover:border-transparent transition-all">
                   <div className="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5 text-brand-600" />
                   </div>
-                  <h3 className="font-semibold text-zinc-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-zinc-600">{item.desc}</p>
+                  <h3 className="font-semibold text-surface-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-surface-600">{item.desc}</p>
                 </div>
               </div>
             );

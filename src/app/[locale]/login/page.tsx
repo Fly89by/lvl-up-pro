@@ -36,54 +36,54 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-zinc-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-surface-50 via-white to-brand-50/30 px-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 mb-6">
-            <div className="w-8 h-8 rounded-lg gradient-brand" />
-            <span className="text-lg font-bold text-zinc-900">LVL Up</span>
+        <div className="text-center mb-8 animate-fade-in">
+          <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
+            <div className="w-9 h-9 rounded-xl gradient-brand transition-transform duration-200 group-hover:scale-105" />
+            <span className="text-lg font-bold text-surface-900">LVL Up</span>
           </Link>
-          <h1 className="text-2xl font-bold text-zinc-900">Sign In</h1>
-          <p className="text-zinc-500 mt-1">Access your account</p>
+          <h1 className="text-2xl font-bold text-surface-900">Sign In</h1>
+          <p className="text-surface-500 mt-1">Access your account</p>
         </div>
 
-        <form onSubmit={handleLogin} className="bg-white rounded-2xl p-8 shadow-lg border border-zinc-100 space-y-5">
+        <form onSubmit={handleLogin} className="glass-card rounded-2xl p-8 space-y-5 animate-fade-in-up">
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none transition-colors"
+              className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none transition-all duration-200 bg-white/50"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1.5">Password</label>
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none transition-colors"
+              className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none transition-all duration-200 bg-white/50"
             />
           </div>
 
           {error && (
-            <div className="text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3">{error}</div>
+            <div className="text-sm text-red-600 bg-red-50/80 backdrop-blur-sm rounded-xl px-4 py-3 border border-red-100">{error}</div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full text-white gradient-brand rounded-xl px-6 py-3 font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+            className="w-full btn-primary"
           >
             {loading ? "Signing in..." : "Sign In"}
           </button>
 
-          <p className="text-center text-sm text-zinc-500">
+          <p className="text-center text-sm text-surface-500">
             Don't have an account?{" "}
-            <Link href="/register" className="text-brand-600 hover:text-brand-700 font-medium">
+            <Link href="/register" className="text-brand-600 hover:text-brand-700 font-medium transition-colors">
               Create one
             </Link>
           </p>

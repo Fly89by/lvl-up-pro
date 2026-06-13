@@ -52,68 +52,68 @@ export default function BranchesPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-900">{t("branches")}</h1>
-          <p className="text-zinc-500 text-sm mt-1">Manage Organization Branches</p>
+          <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">{t("branches")}</h1>
+          <p className="text-surface-500 text-sm mt-1">Manage Organization Branches</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium hover:bg-brand-700 transition-colors">
+        <button className="btn-primary">
           <Plus className="w-4 h-4" />
           {t("create")}
         </button>
       </div>
 
       <div className="relative max-w-xs">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-400" />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder={t("search")}
-          className="w-full pl-9 pr-4 py-2 rounded-xl border border-zinc-200 text-sm focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none"
+          className="w-full pl-9 pr-4 py-2 rounded-xl border border-surface-200 text-sm focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none"
         />
       </div>
 
-      <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm overflow-hidden">
+      <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm glass-card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-zinc-100">
-                <th className="text-right px-6 py-4 text-sm font-medium text-zinc-500">{t("branch")}</th>
-                <th className="text-right px-6 py-4 text-sm font-medium text-zinc-500">City</th>
-                <th className="text-right px-6 py-4 text-sm font-medium text-zinc-500">Phone</th>
-                <th className="text-right px-6 py-4 text-sm font-medium text-zinc-500">Status</th>
-                <th className="text-right px-6 py-4 text-sm font-medium text-zinc-500">{t("actions")}</th>
+              <tr className="border-b border-surface-100">
+                <th className="text-right px-6 py-4 text-sm font-medium text-surface-500">{t("branch")}</th>
+                <th className="text-right px-6 py-4 text-sm font-medium text-surface-500">City</th>
+                <th className="text-right px-6 py-4 text-sm font-medium text-surface-500">Phone</th>
+                <th className="text-right px-6 py-4 text-sm font-medium text-surface-500">Status</th>
+                <th className="text-right px-6 py-4 text-sm font-medium text-surface-500">{t("actions")}</th>
               </tr>
             </thead>
             <tbody>
               {filtered.length === 0 && (
-                <tr><td colSpan={5} className="text-center py-12 text-zinc-400 text-sm">{t("noData")}</td></tr>
+                <tr><td colSpan={5} className="text-center py-12 text-surface-400 text-sm">{t("noData")}</td></tr>
               )}
               {filtered.map((branch) => (
-                <tr key={branch.id} className="border-b border-zinc-50 hover:bg-zinc-50/50 transition-colors">
+                <tr key={branch.id} className="border-b border-surface-50 hover:bg-surface-50/50 transition-colors">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-xl bg-brand-50 flex items-center justify-center">
                         <Building2 className="w-4 h-4 text-brand-600" />
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-zinc-900">{branch.name}</p>
-                        {branch.address && <p className="text-xs text-zinc-400">{branch.address}</p>}
+                        <p className="text-sm font-medium text-surface-900">{branch.name}</p>
+                        {branch.address && <p className="text-xs text-surface-400">{branch.address}</p>}
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-sm text-zinc-600">{branch.city || "-"}</td>
-                  <td className="px-6 py-4 text-sm text-zinc-600">{branch.phone || "-"}</td>
+                  <td className="px-6 py-4 text-sm text-surface-600">{branch.city || "-"}</td>
+                  <td className="px-6 py-4 text-sm text-surface-600">{branch.phone || "-"}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      branch.is_active ? "bg-emerald-50 text-emerald-700" : "bg-zinc-100 text-zinc-500"
+                      branch.is_active ? "bg-emerald-50 text-emerald-700 border border-emerald-200" : "bg-surface-100 text-surface-500 border border-surface-200"
                     }`}>
                       {branch.is_active ? "Active" : "Inactive"}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <button className="p-1.5 rounded-lg text-zinc-400 hover:text-brand-600 hover:bg-brand-50 transition-colors"><Pencil className="w-4 h-4" /></button>
-                      <button className="p-1.5 rounded-lg text-zinc-400 hover:text-red-600 hover:bg-red-50 transition-colors"><Trash2 className="w-4 h-4" /></button>
+                      <button className="p-1.5 rounded-lg text-surface-400 hover:text-brand-600 hover:bg-brand-50 transition-colors"><Pencil className="w-4 h-4" /></button>
+                      <button className="p-1.5 rounded-lg text-surface-400 hover:text-red-600 hover:bg-red-50 transition-colors"><Trash2 className="w-4 h-4" /></button>
                     </div>
                   </td>
                 </tr>

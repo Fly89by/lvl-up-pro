@@ -14,10 +14,10 @@ export default function AllInOne() {
   ];
 
   return (
-    <section className="section-padding bg-zinc-50">
+    <section className="section-padding bg-surface-50">
       <div className="container-main">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
             {t("title")}
           </h2>
         </div>
@@ -26,12 +26,12 @@ export default function AllInOne() {
           {items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div key={i} className="bg-white rounded-2xl p-6 border border-zinc-100 hover:border-brand-100 hover:shadow-lg transition-all duration-300">
+              <div key={i} className="glass-card bg-white rounded-2xl p-6 border border-surface-100 hover:border-brand-100 hover:shadow-lg transition-all duration-300">
                 <div className="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-4">
                   <Icon className="w-5 h-5 text-brand-600" />
                 </div>
-                <h3 className="font-semibold text-zinc-900 mb-2">{item.title}</h3>
-                <p className="text-sm text-zinc-600">{item.desc}</p>
+                <h3 className="font-semibold text-surface-900 mb-2">{item.title}</h3>
+                <p className="text-sm text-surface-600">{item.desc}</p>
               </div>
             );
           })}

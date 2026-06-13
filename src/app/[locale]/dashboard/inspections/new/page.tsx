@@ -106,40 +106,40 @@ export default function NewInspectionPage() {
     return (
       <div className="max-w-2xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
-          <div><h1 className="text-xl font-bold text-zinc-900">New Inspection</h1>
-            <p className="text-zinc-500 text-sm mt-1">Select template and branch to start inspection</p></div>
-          <button onClick={() => router.back()} className="flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700">
+          <div><h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">New Inspection</h1>
+            <p className="text-surface-500 text-sm mt-1">Select template and branch to start inspection</p></div>
+          <button onClick={() => router.back()} className="flex items-center gap-1 text-sm text-surface-500 hover:text-surface-700">
             <ArrowRight className="w-4 h-4" /> Back
           </button>
         </div>
 
-        <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6 space-y-5">
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 space-y-5 glass-card">
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1.5">Branch</label>
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">Branch</label>
             <select value={selectedBranch} onChange={(e) => setSelectedBranch(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 outline-none">
+              className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 outline-none">
               <option value="">Select branch...</option>
               {branches.map((b) => <option key={b.id} value={b.id}>{b.name}</option>)}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1.5">Inspection Template</label>
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">Inspection Template</label>
             <div className="grid gap-2">
               {templates.map((t) => (
                 <button key={t.id} type="button" onClick={() => setSelectedTemplate(t)}
                   className={`text-right w-full p-4 rounded-xl border transition-all ${
                     selectedTemplate?.id === t.id
                       ? "border-brand-400 bg-brand-50"
-                      : "border-zinc-200 hover:border-brand-200"
+                      : "border-surface-200 hover:border-brand-200"
                   }`}>
-                  <p className="text-sm font-medium text-zinc-900">{t.title}</p>
-                  <p className="text-xs text-zinc-500 mt-0.5">{t.sections?.length || 0} sections</p>
+                  <p className="text-sm font-medium text-surface-900">{t.title}</p>
+                  <p className="text-xs text-surface-500 mt-0.5">{t.sections?.length || 0} sections</p>
                 </button>
               ))}
             </div>
           </div>
           <button onClick={startInspection} disabled={!selectedTemplate || !selectedBranch}
-            className="w-full py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium hover:bg-brand-700 transition-colors disabled:opacity-50">
+            className="w-full py-2.5 btn-primary disabled:opacity-50">
             Start Inspection
           </button>
         </div>
@@ -151,8 +151,8 @@ export default function NewInspectionPage() {
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-900">{selectedTemplate?.title}</h1>
-          <p className="text-zinc-500 text-sm mt-1">
+          <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">{selectedTemplate?.title}</h1>
+          <p className="text-surface-500 text-sm mt-1">
             {branches.find((b) => b.id === selectedBranch)?.name}
             {location && " • Location set"}
           </p>
@@ -162,25 +162,24 @@ export default function NewInspectionPage() {
         <div className="bg-gradient-to-br from-purple-50 to-brand-50 rounded-2xl border border-purple-100 p-4">
           <div className="flex items-center gap-1.5 mb-2">
             <Sparkles className="w-4 h-4 text-purple-600" />
-            <span className="text-xs font-semibold text-zinc-700">AI Insights</span>
+            <span className="text-xs font-semibold text-surface-700">AI Insights</span>
           </div>
-          <p className="text-xs text-zinc-600">Continue filling the inspection. AI will analyze your answers and provide recommendations on review.</p>
+          <p className="text-xs text-surface-600">Continue filling the inspection. AI will analyze your answers and provide recommendations on review.</p>
         </div>
       )}
         {step === "fill" && (
-          <button onClick={() => setStep("review")}
-            className="flex items-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium">
+          <button onClick={() => setStep("review")} className="btn-primary">
             Review <Send className="w-4 h-4" />
           </button>
         )}
       </div>
 
       {step === "fill" && selectedTemplate?.sections.map((section: TemplateSection) => (
-        <div key={section.id} className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6 space-y-4">
-          <h2 className="text-sm font-bold text-zinc-900">{section.title}</h2>
+        <div key={section.id} className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 space-y-4 glass-card">
+          <h2 className="text-sm font-bold text-surface-900">{section.title}</h2>
           {section.questions.map((q: TemplateQuestion) => (
             <div key={q.id} className="space-y-2">
-              <p className="text-sm text-zinc-700">
+              <p className="text-sm text-surface-700">
                 {q.title}
                 {q.required && <span className="text-red-500 mr-1">*</span>}
               </p>
@@ -189,11 +188,11 @@ export default function NewInspectionPage() {
                 <div className="flex gap-2">
                   <button type="button" onClick={() => setAnswer(q.id, true)}
                     className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                      answers[q.id] === true ? "bg-emerald-500 text-white" : "bg-zinc-100 text-zinc-600 hover:bg-emerald-50"
+                      answers[q.id] === true ? "bg-emerald-500 text-white" : "bg-surface-100 text-surface-600 hover:bg-emerald-50"
                     }                    `}>Yes</button>
                   <button type="button" onClick={() => setAnswer(q.id, false)}
                     className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-                      answers[q.id] === false ? "bg-red-500 text-white" : "bg-zinc-100 text-zinc-600 hover:bg-red-50"
+                      answers[q.id] === false ? "bg-red-500 text-white" : "bg-surface-100 text-surface-600 hover:bg-red-50"
                     }`}>No</button>
                 </div>
               )}
@@ -203,7 +202,7 @@ export default function NewInspectionPage() {
                   {[1, 2, 3, 4, 5].map((n) => (
                     <button key={n} type="button" onClick={() => setAnswer(q.id, n)}
                       className={`w-9 h-9 rounded-lg flex items-center justify-center transition-colors ${
-                        answers[q.id] >= n ? "bg-amber-400 text-white" : "bg-zinc-100 text-zinc-400"
+                        answers[q.id] >= n ? "bg-amber-400 text-white" : "bg-surface-100 text-surface-400"
                       }`}>
                       <Star className="w-4 h-4" fill={answers[q.id] >= n ? "currentColor" : "none"} />
                     </button>
@@ -213,7 +212,7 @@ export default function NewInspectionPage() {
 
               {q.type === "text" && (
                 <textarea value={answers[q.id] || ""} onChange={(e) => setAnswer(q.id, e.target.value)}
-                  className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-sm outline-none focus:border-brand-400"
+                  className="w-full px-3 py-2 rounded-xl border border-surface-200 text-sm outline-none focus:border-brand-400"
                   rows={2} placeholder="Write a note..." />
               )}
 
@@ -222,7 +221,7 @@ export default function NewInspectionPage() {
                   {q.options?.map((opt, idx) => (
                     <button key={idx} type="button" onClick={() => setAnswer(q.id, opt)}
                       className={`block w-full text-right px-3 py-2 rounded-lg text-sm transition-colors ${
-                        answers[q.id] === opt ? "bg-brand-50 text-brand-700 border border-brand-300" : "bg-zinc-50 text-zinc-600 hover:bg-zinc-100"
+                        answers[q.id] === opt ? "bg-brand-50 text-brand-700 border border-brand-300" : "bg-surface-50 text-surface-600 hover:bg-surface-100"
                       }`}>
                       {opt}
                     </button>
@@ -232,7 +231,7 @@ export default function NewInspectionPage() {
 
               {q.type === "photo" && (
                 <button type="button" onClick={() => handlePhoto(q.id)}
-                  className="flex items-center gap-2 px-4 py-2 rounded-xl border border-zinc-200 text-sm text-zinc-600 hover:bg-zinc-50">
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl border border-surface-200 text-sm text-surface-600 hover:bg-surface-50">
                   <Camera className="w-4 h-4" />
                   {photos[q.id] ? "Photo taken" : "Take Photo"}
                 </button>
@@ -243,24 +242,24 @@ export default function NewInspectionPage() {
       ))}
 
       {step === "fill" && (
-        <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6">
-          <label className="block text-sm font-medium text-zinc-700 mb-1.5">General Notes</label>
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 glass-card">
+          <label className="block text-sm font-medium text-surface-700 mb-1.5">General Notes</label>
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)}
-            className="w-full px-3 py-2 rounded-xl border border-zinc-200 text-sm outline-none focus:border-brand-400" rows={2} />
+            className="w-full px-3 py-2 rounded-xl border border-surface-200 text-sm outline-none focus:border-brand-400" rows={2} />
         </div>
       )}
 
       {step === "review" && (
-        <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6 space-y-4">
-          <h2 className="text-sm font-bold text-zinc-900">Inspection Review</h2>
-          <div className="space-y-2 text-sm text-zinc-600">
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 space-y-4 glass-card">
+          <h2 className="text-sm font-bold text-surface-900">Inspection Review</h2>
+          <div className="space-y-2 text-sm text-surface-600">
             <p>Branch: {branches.find((b) => b.id === selectedBranch)?.name}</p>
             <p>Template: {selectedTemplate?.title}</p>
             <p>Answered {Object.keys(answers).length} question{Object.keys(answers).length > 1 ? 's' : ''}</p>
             {location && <p className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {location.lat.toFixed(4)}, {location.lng.toFixed(4)}</p>}
           </div>
           <button onClick={submitInspection} disabled={saving}
-            className="w-full py-2.5 bg-emerald-600 text-white rounded-xl text-sm font-medium hover:bg-emerald-700 transition-colors disabled:opacity-50">
+              className="w-full py-2.5 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-emerald-600 hover:bg-emerald-700 transition-all duration-200 hover:shadow-lg hover:shadow-emerald-500/25 disabled:opacity-50">
             {saving ? "Sending..." : "Submit Inspection"}
           </button>
         </div>

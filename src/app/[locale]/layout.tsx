@@ -21,10 +21,13 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages();
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
     <NextIntlClientProvider messages={messages} locale={locale}>
-      {children}
+      <div dir={dir} className="flex flex-col min-h-full">
+        {children}
+      </div>
     </NextIntlClientProvider>
   );
 }

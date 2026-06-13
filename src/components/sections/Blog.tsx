@@ -11,17 +11,17 @@ export default function Blog() {
   const t = useTranslations("blog");
 
   return (
-    <section className="section-padding bg-zinc-50">
+    <section className="section-padding bg-surface-50">
       <div className="container-main">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
             {t("title")}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {posts.map((post, i) => (
-            <div key={i} className="bg-white rounded-2xl overflow-hidden border border-zinc-100 hover:shadow-lg transition-shadow">
+            <div key={i} className="glass-card bg-white rounded-2xl overflow-hidden border border-surface-100 hover:shadow-lg transition-shadow">
               <div className="aspect-video bg-gradient-to-br from-brand-100 to-accent-100 flex items-center justify-center">
                 <span className="text-brand-400 text-sm font-medium">Image</span>
               </div>
@@ -29,10 +29,10 @@ export default function Blog() {
                 <span className="text-xs font-medium text-brand-600 bg-brand-50 rounded-full px-3 py-1">
                   {post.category}
                 </span>
-                <h3 className="mt-3 font-semibold text-zinc-900 leading-snug">
+                <h3 className="mt-3 font-semibold text-surface-900 leading-snug">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-xs text-zinc-400">{post.date}</p>
+                <p className="mt-2 text-xs text-surface-400">{post.date}</p>
                 <Link href="#" className="mt-4 inline-block text-sm font-medium text-brand-600 hover:text-brand-700 transition-colors">
                   {t("readMore")} →
                 </Link>

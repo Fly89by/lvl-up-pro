@@ -147,73 +147,73 @@ export default function TemplateBuilder() {
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-900">New Template</h1>
-          <p className="text-zinc-500 text-sm mt-1">Create a custom inspection template tailored to your needs</p>
+          <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">New Template</h1>
+          <p className="text-surface-500 text-sm mt-1">Create a custom inspection template tailored to your needs</p>
         </div>
-        <button onClick={() => router.back()} className="flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-700">
+        <button onClick={() => router.back()} className="flex items-center gap-1 text-sm text-surface-500 hover:text-surface-700">
           <ArrowRight className="w-4 h-4" /> Back
         </button>
       </div>
 
       <form onSubmit={handleSave} className="space-y-6">
-        <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6 space-y-4">
+        <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 space-y-4 glass-card">
           <div>
-            <label className="block text-sm font-medium text-zinc-700 mb-1.5">Template Title</label>
+            <label className="block text-sm font-medium text-surface-700 mb-1.5">Template Title</label>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required
               placeholder="e.g. Restaurant Cleanliness Assessment"
-              className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none" />
+              className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-zinc-700 mb-1.5">Description (optional)</label>
+              <label className="block text-sm font-medium text-surface-700 mb-1.5">Description (optional)</label>
               <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none" />
+                className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none" />
             </div>
             <div>
-              <label className="block text-sm font-medium text-zinc-700 mb-1.5">Category</label>
+              <label className="block text-sm font-medium text-surface-700 mb-1.5">Category</label>
               <input type="text" value={category} onChange={(e) => setCategory(e.target.value)}
                 placeholder="Restaurants, Warehouses..."
-                className="w-full px-4 py-2.5 rounded-xl border border-zinc-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none" />
+                className="w-full px-4 py-2.5 rounded-xl border border-surface-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none" />
             </div>
           </div>
         </div>
 
         {sections.map((section, sIdx) => (
-          <div key={section.id} className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-6 space-y-4">
+          <div key={section.id} className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-6 space-y-4 glass-card">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3 flex-1">
                 <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center text-brand-600 font-bold text-sm">{sIdx + 1}</div>
                 <input type="text" value={section.title} onChange={(e) => updateSectionTitle(section.id, e.target.value)}
-                  className="text-sm font-semibold text-zinc-900 border-none outline-none bg-transparent focus:ring-0 p-0" />
+                  className="text-sm font-semibold text-surface-900 border-none outline-none bg-transparent focus:ring-0 p-0" />
               </div>
               <button type="button" onClick={() => removeSection(section.id)}
-                className="p-1.5 rounded-lg text-zinc-400 hover:text-red-600 hover:bg-red-50 transition-colors">
+                className="p-1.5 rounded-lg text-surface-400 hover:text-red-600 hover:bg-red-50 transition-colors">
                 <Trash2 className="w-4 h-4" />
               </button>
             </div>
 
             <div className="space-y-3">
               {section.questions.map((q) => (
-                <div key={q.id} className="bg-zinc-50 rounded-xl p-4 space-y-3">
+                <div key={q.id} className="bg-surface-50 rounded-xl p-4 space-y-3">
                   <div className="flex items-start gap-3">
                     <input type="text" value={q.title} onChange={(e) => updateQuestion(section.id, q.id, { title: e.target.value })}
                       placeholder="Question..."
-                      className="flex-1 px-3 py-2 rounded-lg border border-zinc-200 text-sm focus:border-brand-400 outline-none bg-white" />
+                      className="flex-1 px-3 py-2 rounded-lg border border-surface-200 text-sm focus:border-brand-400 outline-none bg-white" />
                   </div>
                   <div className="flex items-center gap-3 flex-wrap">
                     <select value={q.type} onChange={(e) => updateQuestion(section.id, q.id, { type: e.target.value as any })}
-                      className="px-3 py-1.5 rounded-lg border border-zinc-200 text-sm outline-none bg-white">
+                      className="px-3 py-1.5 rounded-lg border border-surface-200 text-sm outline-none bg-white">
                       {questionTypes.map((t) => (
                         <option key={t.value} value={t.value}>{t.label}</option>
                       ))}
                     </select>
-                    <label className="flex items-center gap-1.5 text-sm text-zinc-600 cursor-pointer">
+                    <label className="flex items-center gap-1.5 text-sm text-surface-600 cursor-pointer">
                       <input type="checkbox" checked={q.required} onChange={(e) => updateQuestion(section.id, q.id, { required: e.target.checked })}
-                        className="rounded border-zinc-300 text-brand-600 focus:ring-brand-500" />
+                        className="rounded border-surface-300 text-brand-600 focus:ring-brand-2000" />
                       Required
                     </label>
                     <button type="button" onClick={() => removeQuestion(section.id, q.id)}
-                      className="p-1 rounded text-zinc-400 hover:text-red-600">
+                      className="p-1 rounded text-surface-400 hover:text-red-600">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -222,9 +222,9 @@ export default function TemplateBuilder() {
                       {q.options?.map((opt, oIdx) => (
                         <div key={oIdx} className="flex items-center gap-2">
                           <input type="text" value={opt} onChange={(e) => updateOption(section.id, q.id, oIdx, e.target.value)}
-                            className="flex-1 px-2.5 py-1.5 rounded-lg border border-zinc-200 text-sm outline-none bg-white" />
+                            className="flex-1 px-2.5 py-1.5 rounded-lg border border-surface-200 text-sm outline-none bg-white" />
                           <button type="button" onClick={() => removeOption(section.id, q.id, oIdx)}
-                            className="text-zinc-400 hover:text-red-600">
+                            className="text-surface-400 hover:text-red-600">
                             <Trash2 className="w-3 h-3" />
                           </button>
                         </div>
@@ -247,13 +247,13 @@ export default function TemplateBuilder() {
         ))}
 
         <button type="button" onClick={addSection}
-          className="w-full py-3 rounded-2xl border-2 border-dashed border-zinc-200 text-sm text-zinc-500 hover:border-brand-300 hover:text-brand-600 transition-colors">
+          className="w-full py-3 rounded-2xl border-2 border-dashed border-surface-200 text-sm text-surface-500 hover:border-brand-300 hover:text-brand-600 transition-colors">
           + Add New Section
         </button>
 
         <div className="flex justify-end">
           <button type="submit" disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium hover:bg-brand-700 transition-colors disabled:opacity-50">
+            className="btn-primary">
             <Save className="w-4 h-4" />
             {saving ? "Saving..." : "Save Template"}
           </button>

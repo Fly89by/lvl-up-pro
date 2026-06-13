@@ -65,8 +65,8 @@ export default function AIAssistant() {
       )}
 
       {open && (
-        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-zinc-200 flex flex-col overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 gradient-brand text-white">
+        <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[calc(100vw-2rem)] bg-white/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-surface-200 flex flex-col overflow-hidden glass-card">
+          <div className="flex items-center justify-between px-4 py-3 border-b border-surface-100 gradient-brand text-white">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5" />
               <span className="font-semibold text-sm">LVL Up AI</span>
@@ -84,7 +84,7 @@ export default function AIAssistant() {
                   className={`max-w-[85%] px-3 py-2 rounded-xl text-sm ${
                     msg.role === "user"
                       ? "bg-brand-600 text-white"
-                      : "bg-zinc-100 text-zinc-800"
+                      : "bg-surface-100 text-surface-800"
                   }`}
                 >
                   {msg.content}
@@ -93,7 +93,7 @@ export default function AIAssistant() {
             ))}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-zinc-100 rounded-xl px-3 py-2 flex items-center gap-2 text-sm text-zinc-500">
+                <div className="bg-surface-100 rounded-xl px-3 py-2 flex items-center gap-2 text-sm text-surface-500">
                   <Loader2 className="w-3 h-3 animate-spin" />
                   Thinking...
                 </div>
@@ -102,7 +102,7 @@ export default function AIAssistant() {
             <div ref={bottomRef} />
           </div>
 
-          <div className="border-t border-zinc-100 p-3">
+          <div className="border-t border-surface-100 p-3">
             <form
               onSubmit={(e) => { e.preventDefault(); handleSend(); }}
               className="flex gap-2"
@@ -112,17 +112,17 @@ export default function AIAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about performance..."
-                className="flex-1 px-3 py-2 rounded-xl border border-zinc-200 text-sm outline-none focus:border-brand-400"
+                className="flex-1 px-3 py-2 rounded-xl border border-surface-200 text-sm outline-none focus:border-brand-400"
               />
               <button
                 type="submit"
                 disabled={loading || !input.trim()}
-                className="p-2 rounded-xl bg-brand-600 text-white hover:bg-brand-700 disabled:opacity-50 transition-colors"
+                className="btn-primary"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
-            <p className="text-[10px] text-zinc-400 mt-1.5 text-center">
+            <p className="text-[10px] text-surface-400 mt-1.5 text-center">
               Powered by Nemotron 3 Ultra
             </p>
           </div>

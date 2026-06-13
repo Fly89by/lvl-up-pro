@@ -15,9 +15,9 @@ interface AppUser {
 }
 
 const roleColors: Record<string, string> = {
-  org_admin: "bg-violet-50 text-violet-700",
-  manager: "bg-blue-50 text-blue-700",
-  inspector: "bg-emerald-50 text-emerald-700",
+  org_admin: "bg-violet-50 text-violet-700 border border-violet-200",
+  manager: "bg-blue-50 text-blue-700 border border-blue-200",
+  inspector: "bg-emerald-50 text-emerald-700 border border-emerald-200",
 };
 
 const roleNames: Record<string, string> = {
@@ -64,40 +64,40 @@ export default function UsersPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-900">{t("users")}</h1>
-          <p className="text-zinc-500 text-sm mt-1">User Management & Permissions</p>
+          <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">{t("users")}</h1>
+          <p className="text-surface-500 text-sm mt-1">User Management & Permissions</p>
         </div>
       </div>
 
       <div className="relative max-w-xs">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-400" />
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
           placeholder={t("search")}
-          className="w-full pl-9 pr-4 py-2 rounded-xl border border-zinc-200 text-sm focus:border-brand-400 focus:ring-2 focus:ring-brand-50 outline-none" />
+          className="w-full pl-9 pr-4 py-2 rounded-xl border border-surface-200 text-sm focus:border-brand-400 focus:ring-2 focus:ring-brand-200 outline-none" />
       </div>
 
       <div className="grid gap-3">
-        {filtered.length === 0 && <p className="text-center py-12 text-zinc-400 text-sm">{t("noData")}</p>}
+        {filtered.length === 0 && <p className="text-center py-12 text-surface-400 text-sm">{t("noData")}</p>}
         {filtered.map((u) => (
-          <div key={u.id} className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-4 flex items-center justify-between">
+          <div key={u.id} className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-4 flex items-center justify-between glass-card">
             <div className="flex items-center gap-4">
               <div className="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center text-white font-bold text-sm">
                 {u.full_name.charAt(0)}
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-medium text-zinc-900">{u.full_name}</p>
+                  <p className="text-sm font-medium text-surface-900">{u.full_name}</p>
                   {u.is_active && <BadgeCheck className="w-4 h-4 text-emerald-500" />}
                 </div>
-                <p className="text-xs text-zinc-400">{u.email}</p>
+                <p className="text-xs text-surface-400">{u.email}</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${roleColors[u.role] || "bg-zinc-100 text-zinc-600"}`}>
+              <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${roleColors[u.role] || "bg-surface-100 text-surface-600 border border-surface-200"}`}>
                 {roleNames[u.role] || u.role}
               </span>
               {!u.is_active && (
-                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-100 text-zinc-500">Inactive</span>
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-surface-100 text-surface-500 border border-surface-200">Inactive</span>
               )}
             </div>
           </div>

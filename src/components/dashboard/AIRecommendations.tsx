@@ -31,9 +31,9 @@ export default function AIRecommendations() {
   if (!data || (!data.recommendations?.length && !data.critical_issues?.length)) return null;
 
   const priorityColors: Record<string, string> = {
-    high: "bg-red-50 border-red-200",
-    medium: "bg-amber-50 border-amber-200",
-    low: "bg-blue-50 border-blue-200",
+    high: "bg-red-50 border-red-200 border",
+    medium: "bg-amber-50 border-amber-200 border",
+    low: "bg-blue-50 border-blue-200 border",
   };
   const priorityTextColors: Record<string, string> = {
     high: "text-red-700",
@@ -41,20 +41,20 @@ export default function AIRecommendations() {
     low: "text-blue-700",
   };
   const priorityBadge: Record<string, string> = {
-    high: "bg-red-100 text-red-700",
-    medium: "bg-amber-100 text-amber-700",
-    low: "bg-blue-100 text-blue-700",
+    high: "bg-red-100 text-red-700 border border-red-200",
+    medium: "bg-amber-100 text-amber-700 border border-amber-200",
+    low: "bg-blue-100 text-blue-700 border border-blue-200",
   };
 
   return (
-    <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm p-5 space-y-4">
+    <div className="bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-5 space-y-4 glass-card">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-amber-500" />
-          <h3 className="text-sm font-bold text-zinc-900">AI Recommendations</h3>
-          <span className="text-[10px] text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded">Nemotron 3 Ultra</span>
+          <h3 className="text-sm font-bold text-surface-900">AI Recommendations</h3>
+          <span className="text-[10px] text-surface-400 bg-surface-100 px-1.5 py-0.5 rounded">Nemotron 3 Ultra</span>
         </div>
-        <button onClick={load} className="p-1.5 rounded-lg text-zinc-400 hover:text-brand-600 hover:bg-brand-50 transition-colors">
+        <button onClick={load} className="p-1.5 rounded-lg text-surface-400 hover:text-brand-600 hover:bg-brand-50 transition-colors">
           <RefreshCw className="w-3.5 h-3.5" />
         </button>
       </div>
@@ -78,14 +78,14 @@ export default function AIRecommendations() {
           {data.recommendations.map((rec, i) => (
             <div key={i} className={`rounded-xl px-3 py-2.5 border ${priorityColors[rec.priority] || priorityColors.low}`}>
               <div className="flex items-start justify-between gap-2">
-                <p className="text-xs font-semibold text-zinc-800">{rec.title}</p>
+                <p className="text-xs font-semibold text-surface-800">{rec.title}</p>
                 <span className={`shrink-0 px-1.5 py-0.5 rounded text-[10px] font-medium ${priorityBadge[rec.priority] || priorityBadge.low}`}>
                   {rec.priority}
                 </span>
               </div>
-              <p className="text-xs text-zinc-600 mt-1">{rec.description}</p>
+              <p className="text-xs text-surface-600 mt-1">{rec.description}</p>
               {rec.category && (
-                <span className="inline-block mt-1 text-[10px] text-zinc-400 bg-zinc-100 px-1.5 py-0.5 rounded">{rec.category}</span>
+                <span className="inline-block mt-1 text-[10px] text-surface-400 bg-surface-100 px-1.5 py-0.5 rounded">{rec.category}</span>
               )}
             </div>
           ))}

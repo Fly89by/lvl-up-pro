@@ -14,7 +14,7 @@ export default function FAQ() {
     <section className="section-padding bg-white">
       <div className="container-main max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
             {t("title")}
           </h2>
         </div>
@@ -23,16 +23,16 @@ export default function FAQ() {
           {faqs.map((i) => {
             const isOpen = open === i;
             return (
-              <div key={i} className="border border-zinc-200 rounded-xl overflow-hidden">
+              <div key={i} className="border border-surface-200 rounded-xl overflow-hidden">
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-4 text-right"
                 >
-                  <span className="font-medium text-zinc-900">{t(`q${i}`)}</span>
-                  <ChevronDown className={`w-5 h-5 text-zinc-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  <span className="font-medium text-surface-900">{t(`q${i}`)}</span>
+                  <ChevronDown className={`w-5 h-5 text-surface-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-4 text-zinc-600 leading-relaxed">
+                  <div className="px-6 pb-4 text-surface-600 leading-relaxed">
                     {t(`a${i}`)}
                   </div>
                 )}

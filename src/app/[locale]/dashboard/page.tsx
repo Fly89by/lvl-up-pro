@@ -17,11 +17,11 @@ interface StatCard {
 
 function StatCard({ label, value, icon, trend, trendUp, color }: StatCard) {
   return (
-    <div className="bg-white rounded-2xl p-6 border border-zinc-100 shadow-sm">
+    <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-surface-100 shadow-sm glass-card">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-zinc-500">{label}</p>
-          <p className="text-2xl font-bold text-zinc-900 mt-1">{value}</p>
+          <p className="text-sm font-medium text-surface-500">{label}</p>
+          <p className="text-2xl font-bold text-surface-900 mt-1">{value}</p>
           {trend && (
             <p className={`text-xs font-medium mt-1 ${trendUp ? "text-emerald-600" : "text-red-500"}`}>
               {trend}
@@ -97,8 +97,8 @@ export default function DashboardOverview() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-xl font-bold text-zinc-900">{t("welcome")}</h1>
-        <p className="text-zinc-500 text-sm mt-1">{t("subtitle")}</p>
+        <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">{t("welcome")}</h1>
+        <p className="text-surface-500 text-sm mt-1">{t("subtitle")}</p>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

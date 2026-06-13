@@ -7,7 +7,7 @@ import { routing } from "./i18n/routing";
 const intlMiddleware = createIntlMiddleware(routing);
 
 export async function proxy(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
+  let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -21,9 +21,9 @@ export async function proxy(request: NextRequest) {
           cookiesToSet.forEach(({ name, value }) =>
             request.cookies.set(name, value)
           );
-          supabaseResponse = NextResponse.next({ request });
+          response = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
-            supabaseResponse.cookies.set(name, value, options)
+            response.cookies.set(name, value, options)
           );
         },
       },
@@ -33,9 +33,11 @@ export async function proxy(request: NextRequest) {
   await supabase.auth.getUser();
 
   const intlResponse = intlMiddleware(request);
-  if (intlResponse) return intlResponse;
+  if (intlResponse && (intlResponse.status === 307 || intlResponse.status === 308)) {
+    return intlResponse;
+  }
 
-  return supabaseResponse;
+  return response;
 }
 
 export const config = {

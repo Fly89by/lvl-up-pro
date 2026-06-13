@@ -64,8 +64,8 @@ export default function NotificationsPage() {
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-zinc-900">Notifications</h1>
-          <p className="text-zinc-500 text-sm mt-1">
+          <h1 className="text-xl font-bold text-surface-900 animate-fade-in-up">Notifications</h1>
+          <p className="text-surface-500 text-sm mt-1">
             {unreadCount > 0 ? `You have ${unreadCount} unread notification${unreadCount > 1 ? 's' : ''}` : "No new notifications"}
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function NotificationsPage() {
 
       <div className="space-y-2">
         {notifications.length === 0 && (
-          <div className="text-center py-12 text-zinc-400">
+          <div className="text-center py-12 text-surface-400">
             <Bell className="w-12 h-12 mx-auto mb-3 opacity-50" />
             <p className="text-sm">No notifications</p>
           </div>
@@ -88,18 +88,18 @@ export default function NotificationsPage() {
           <button
             key={n.id}
             onClick={() => !n.is_read && markRead(n.id)}
-            className={`w-full text-right bg-white rounded-2xl border border-zinc-100 shadow-sm p-4 transition-colors hover:shadow-md ${
+            className={`w-full text-right bg-white/80 backdrop-blur-xl rounded-2xl border border-surface-100 shadow-sm p-4 transition-colors hover:shadow-md glass-card ${
               !n.is_read ? "border-r-4 border-r-brand-500" : ""
             }`}
           >
             <div className="flex items-start gap-3">
-              <div className={`w-9 h-9 rounded-xl ${typeBg[n.type] || "bg-zinc-50"} flex items-center justify-center shrink-0`}>
-                {typeIcons[n.type] || <Bell className="w-4 h-4 text-zinc-400" />}
+              <div className={`w-9 h-9 rounded-xl ${typeBg[n.type] || "bg-surface-50"} flex items-center justify-center shrink-0`}>
+                {typeIcons[n.type] || <Bell className="w-4 h-4 text-surface-400" />}
               </div>
               <div className="flex-1 min-w-0">
-                <p className={`text-sm ${n.is_read ? "text-zinc-600" : "text-zinc-900 font-semibold"}`}>{n.title}</p>
-                {n.body && <p className="text-xs text-zinc-500 mt-0.5 line-clamp-2">{n.body}</p>}
-                <p className="text-xs text-zinc-400 mt-1">
+                <p className={`text-sm ${n.is_read ? "text-surface-600" : "text-surface-900 font-semibold"}`}>{n.title}</p>
+                {n.body && <p className="text-xs text-surface-500 mt-0.5 line-clamp-2">{n.body}</p>}
+                <p className="text-xs text-surface-400 mt-1">
                   {new Date(n.sent_at).toLocaleDateString("en-US", {
                     hour: "2-digit", minute: "2-digit",
                   })}

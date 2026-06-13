@@ -54,20 +54,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
-        <div className="animate-spin w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full" />
+      <div className="min-h-screen flex items-center justify-center bg-surface-50">
+        <div className="animate-spin w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 flex">
-      <aside className={`fixed top-0 bottom-0 z-40 flex flex-col bg-white border-r border-zinc-200 transition-all duration-300 left-0 ${sidebarOpen ? "w-64" : "w-16"}`}>
-        <div className="flex items-center justify-between h-16 px-4 border-b border-zinc-100">
+    <div className="min-h-screen bg-surface-50 flex">
+      <aside className={`fixed top-0 bottom-0 z-40 flex flex-col glass border-r border-surface-200/50 transition-all duration-300 left-0 ${sidebarOpen ? "w-64" : "w-16"}`}>
+        <div className="flex items-center justify-between h-16 px-4 border-b border-surface-200/50">
           {sidebarOpen && (
             <Link href="/" className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg gradient-brand" />
-              <span className="font-bold text-zinc-900">LVL Up</span>
+              <span className="font-bold text-surface-900">LVL Up</span>
             </Link>
           )}
           {!sidebarOpen && <Link href="/"><div className="w-7 h-7 rounded-lg gradient-brand mx-auto" /></Link>}
@@ -81,10 +81,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <Link
                 key={link.key}
                 href={`/dashboard${link.href}`}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
                   isActive
-                    ? "bg-brand-50 text-brand-700"
-                    : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
+                    ? "glass-card text-brand-700 font-semibold border border-brand-200/50"
+                    : "text-surface-600 hover:bg-surface-100 hover:text-surface-900"
                 }`}
               >
                 <Icon className="w-5 h-5 shrink-0" />
@@ -94,11 +94,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           })}
         </nav>
 
-        <div className="border-t border-zinc-100 p-2 space-y-1">
+        <div className="border-t border-surface-200/50 p-2 space-y-1">
           <Link
             href="/dashboard/settings"
-            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-              pathname.includes("/settings") ? "bg-brand-50 text-brand-700" : "text-zinc-600 hover:bg-zinc-50"
+            className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 hover:scale-[1.02] ${
+              pathname.includes("/settings") ? "glass-card text-brand-700 font-semibold border border-brand-200/50" : "text-surface-600 hover:bg-surface-100 hover:text-surface-900"
             }`}
           >
             <Settings className="w-5 h-5 shrink-0" />
@@ -106,7 +106,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </Link>
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50 transition-all"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 hover:bg-red-50/50 transition-all duration-200 hover:scale-[1.02]"
           >
             <LogOut className="w-5 h-5 shrink-0" />
             {sidebarOpen && <span>{t("signOut")}</span>}
@@ -115,24 +115,24 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-16"}`}>
-        <header className="sticky top-0 z-30 h-16 bg-white/90 backdrop-blur-md border-b border-zinc-100 flex items-center justify-between px-6">
+        <header className="sticky top-0 z-30 h-16 glass border-b border-surface-200/50 flex items-center justify-between px-6">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="p-2 rounded-xl text-zinc-500 hover:bg-zinc-100 transition-colors"
+            className="p-2 rounded-xl text-surface-500 hover:bg-surface-100 transition-colors"
           >
             {sidebarOpen ? <ChevronRight className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
 
           <div className="flex items-center gap-3">
-            <button className="p-2 rounded-xl text-zinc-500 hover:bg-zinc-100 transition-colors relative">
+            <button className="p-2 rounded-xl text-surface-500 hover:bg-surface-100 transition-colors relative">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500" />
             </button>
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-zinc-100">
-              <div className="w-7 h-7 rounded-full bg-brand-500 flex items-center justify-center text-white text-xs font-bold">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-surface-100">
+              <div className="w-7 h-7 rounded-full gradient-brand flex items-center justify-center text-white text-xs font-bold">
                 {user?.email?.charAt(0).toUpperCase()}
               </div>
-              <span className="text-sm font-medium text-zinc-700 max-w-[120px] truncate">{user?.email}</span>
+              <span className="text-sm font-medium text-surface-700 max-w-[120px] truncate">{user?.email}</span>
             </div>
           </div>
         </header>

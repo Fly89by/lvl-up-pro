@@ -16,10 +16,10 @@ export default function Features() {
     <section className="section-padding bg-white">
       <div className="container-main">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-zinc-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-surface-900 mb-4 animate-fade-in-up">
             {t("title")}
           </h2>
-          <p className="text-lg text-zinc-600">
+          <p className="text-lg text-surface-600">
             {t("subtitle")}
           </p>
         </div>
@@ -28,14 +28,14 @@ export default function Features() {
           {items.map((item, i) => {
             const Icon = icons[i];
             return (
-              <div key={i} className="group relative bg-white border border-zinc-100 rounded-2xl p-8 hover:border-brand-100 hover:shadow-lg hover:shadow-brand-50/50 transition-all duration-300">
+              <div key={i} className="group glass-card relative bg-white border border-surface-100 rounded-2xl p-8 hover:border-brand-100 hover:shadow-lg hover:shadow-brand-50/50 transition-all duration-300">
                 <div className="w-12 h-12 rounded-xl bg-brand-50 flex items-center justify-center mb-5 group-hover:bg-brand-100 transition-colors">
                   <Icon className="w-6 h-6 text-brand-600" />
                 </div>
-                <h3 className="text-lg font-semibold text-zinc-900 mb-3">
+                <h3 className="text-lg font-semibold text-surface-900 mb-3">
                   {item.title}
                 </h3>
-                <p className="text-zinc-600 leading-relaxed">
+                <p className="text-surface-600 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
