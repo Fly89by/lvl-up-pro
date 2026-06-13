@@ -1,4 +1,4 @@
--- Joynt AI Clone - Initial Schema
+-- LVL Up AI Clone - Initial Schema
 -- PostgreSQL 15+ / Supabase compatible
 -- Based on ERD from database_erd_full.html
 

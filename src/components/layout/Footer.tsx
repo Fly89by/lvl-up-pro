@@ -11,7 +11,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg gradient-brand" />
-              <span className="text-lg font-bold text-white">Joynt</span>
+              <span className="text-lg font-bold text-white">LVL Up</span>
             </Link>
             <p className="text-sm leading-relaxed">
               Integrated platform for branch performance analysis and smart inspection
@@ -42,7 +42,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-zinc-800 mt-8 pt-8 text-center text-sm">
-          &copy; {new Date().getFullYear()} Joynt. {t("rights")}.
+          &copy; {new Date().getFullYear()} LVL Up. {t("rights")}.
         </div>
       </div>
     </footer>

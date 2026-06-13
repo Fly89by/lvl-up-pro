@@ -104,6 +104,18 @@ export default function SettingsPage() {
             )}
           </div>
         </form>
+
+        <div className="mt-6 pt-6 border-t border-zinc-100">
+          <h3 className="text-sm font-bold text-zinc-900 mb-3">AI Integration</h3>
+          <div className="bg-gradient-to-br from-purple-50 to-brand-50 rounded-2xl border border-purple-100 p-4">
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium text-zinc-800">Nemotron 3 Ultra</span>
+              <span className="text-[10px] text-zinc-400 bg-white px-1.5 py-0.5 rounded">Free Tier</span>
+            </div>
+            <p className="text-xs text-zinc-600">AI analysis, recommendations, and smart assistant are active and powered by Nemotron 3 Ultra via OpenRouter.</p>
+          </div>
+        </div>
       </div>
     </div>
   );

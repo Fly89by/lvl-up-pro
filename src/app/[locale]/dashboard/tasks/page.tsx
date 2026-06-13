@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { ListChecks, Search, Plus, CheckCircle2, Clock, User, X, Save } from "lucide-react";
+import { ListChecks, Search, Plus, CheckCircle2, Clock, User, X, Save, Sparkles } from "lucide-react";
 
 export default function TasksPage() {
   const t = useTranslations("dashboard");
@@ -91,10 +91,32 @@ export default function TasksPage() {
           <h1 className="text-xl font-bold text-zinc-900">{t("tasks")}</h1>
           <p className="text-zinc-500 text-sm mt-1">Task Management</p>
         </div>
-        <button onClick={() => setShowForm(true)}
-          className="flex items-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium hover:bg-brand-700 transition-colors">
-          <Plus className="w-4 h-4" /> {t("create")}
-        </button>
+        <div className="flex items-center gap-2">
+          <button onClick={async () => {
+            const desc = prompt("Describe the task for AI assignment:");
+            if (!desc) return;
+            const branch = branches[0]?.name || "";
+            const res = await fetch("/api/ai/auto-assign", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ taskDescription: desc, branchName: branch }),
+            });
+            const data = await res.json();
+            if (data.suggested_user_id) {
+              const user = users.find((u: any) => u.id === data.suggested_user_id);
+              if (user && confirm(`AI suggests assigning to ${user.full_name} (${data.reason || ""}). Assign?`)) {
+                setForm({ ...form, assigned_to: data.suggested_user_id, title: desc, description: data.reason || "" });
+              }
+            }
+          }}
+            className="flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-purple-600 to-brand-600 text-white rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
+            <Sparkles className="w-4 h-4" /> AI Suggest
+          </button>
+          <button onClick={() => setShowForm(true)}
+            className="flex items-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium hover:bg-brand-700 transition-colors">
+            <Plus className="w-4 h-4" /> {t("create")}
+          </button>
+        </div>
       </div>
 
       {showForm && (

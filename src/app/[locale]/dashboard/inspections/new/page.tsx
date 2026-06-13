@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { ArrowRight, Camera, MapPin, Send, Star } from "lucide-react";
+import { ArrowRight, Camera, MapPin, Send, Star, Sparkles } from "lucide-react";
 import type { Template, TemplateSection, TemplateQuestion } from "@/lib/db/types";
 
 export default function NewInspectionPage() {
@@ -157,6 +157,16 @@ export default function NewInspectionPage() {
             {location && " • Location set"}
           </p>
         </div>
+
+      {answers && Object.keys(answers).length > 0 && (
+        <div className="bg-gradient-to-br from-purple-50 to-brand-50 rounded-2xl border border-purple-100 p-4">
+          <div className="flex items-center gap-1.5 mb-2">
+            <Sparkles className="w-4 h-4 text-purple-600" />
+            <span className="text-xs font-semibold text-zinc-700">AI Insights</span>
+          </div>
+          <p className="text-xs text-zinc-600">Continue filling the inspection. AI will analyze your answers and provide recommendations on review.</p>
+        </div>
+      )}
         {step === "fill" && (
           <button onClick={() => setStep("review")}
             className="flex items-center gap-2 px-4 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-medium">

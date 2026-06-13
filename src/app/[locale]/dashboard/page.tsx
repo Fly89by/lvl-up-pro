@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
 import { Store, ShieldCheck, AlertTriangle, TrendingUp, Building2, Users, ClipboardCheck, ListChecks } from "lucide-react";
+import AIRecommendations from "@/components/dashboard/AIRecommendations";
 
 interface StatCard {
   label: string;
@@ -105,6 +106,8 @@ export default function DashboardOverview() {
           <StatCard key={card.label} {...card} />
         ))}
       </div>
+
+      <AIRecommendations />
     </div>
   );
 }

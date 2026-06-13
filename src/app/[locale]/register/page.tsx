@@ -70,7 +70,7 @@ export default function RegisterPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center gap-2 mb-6">
             <div className="w-8 h-8 rounded-lg gradient-brand" />
-            <span className="text-lg font-bold text-zinc-900">Joynt</span>
+            <span className="text-lg font-bold text-zinc-900">LVL Up</span>
           </Link>
           <h1 className="text-2xl font-bold text-zinc-900">Create Account</h1>
           <p className="text-zinc-500 mt-1">Start improving your branch performance</p>

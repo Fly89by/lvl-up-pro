@@ -1,4 +1,4 @@
-# Joynt AI Clone — Backend Setup
+# LVL Up AI Clone — Backend Setup
 
 ## Prerequisites
 - Docker Desktop (running)

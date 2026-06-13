@@ -11,6 +11,7 @@ import {
   AlertTriangle, ListChecks, BarChart3, LogOut, Menu, X,
   ChevronLeft, ChevronRight, Building2, Settings, Bell, QrCode
 } from "lucide-react";
+import AIAssistant from "@/components/dashboard/AIAssistant";
 
 const sidebarLinks = [
   { href: "", icon: LayoutDashboard, key: "overview" },
@@ -66,7 +67,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           {sidebarOpen && (
             <Link href="/" className="flex items-center gap-2">
               <div className="w-7 h-7 rounded-lg gradient-brand" />
-              <span className="font-bold text-zinc-900">Joynt</span>
+              <span className="font-bold text-zinc-900">LVL Up</span>
             </Link>
           )}
           {!sidebarOpen && <Link href="/"><div className="w-7 h-7 rounded-lg gradient-brand mx-auto" /></Link>}
@@ -139,6 +140,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <main className="flex-1 p-6">
           {children}
         </main>
+        <AIAssistant />
       </div>
     </div>
   );

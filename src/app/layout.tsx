@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Joynt AI — Branch Performance Analytics",
+  title: "LVL Up — Branch Performance Analytics",
   description: "Integrated platform for branch performance analysis and smart inspection",
 };
 

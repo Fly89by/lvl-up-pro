@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
-import { BarChart3, Download, TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { BarChart3, Download, TrendingUp, TrendingDown, Minus, Sparkles, X, Loader2 } from "lucide-react";
 
 type ReportType = "branches" | "users" | "inspections" | "issues" | "tasks";
 
@@ -19,6 +19,8 @@ export default function ReportsPage() {
   const [activeReport, setActiveReport] = useState<ReportType>("inspections");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<ReportData>({ labels: [], values: [], total: 0 });
+  const [aiAnalysis, setAiAnalysis] = useState<any>(null);
+  const [aiLoading, setAiLoading] = useState(false);
 
   useEffect(() => {
     loadReport(activeReport);
@@ -108,6 +110,24 @@ export default function ReportsPage() {
             {tab.labelAr}
           </button>
         ))}
+        <button
+          onClick={async () => {
+            setAiLoading(true);
+            const res = await fetch("/api/ai/analyze", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ type: "report", data }),
+            });
+            const json = await res.json();
+            setAiAnalysis(json.analysis);
+            setAiLoading(false);
+          }}
+          disabled={aiLoading || data.total === 0}
+          className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium bg-gradient-to-r from-purple-600 to-brand-600 text-white hover:opacity-90 transition-opacity disabled:opacity-50"
+        >
+          <Sparkles className="w-4 h-4" />
+          {aiLoading ? "Analyzing..." : "AI Analysis"}
+        </button>
       </div>
 
       {loading ? (
@@ -143,6 +163,32 @@ export default function ReportsPage() {
               );
             })}
           </div>
+        </div>
+      )}
+
+      {aiAnalysis && (
+        <div className="mt-6 bg-gradient-to-br from-purple-50 to-brand-50 rounded-2xl border border-purple-100 p-5 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-bold text-zinc-900 flex items-center gap-1.5">
+              <Sparkles className="w-4 h-4 text-purple-600" /> AI Analysis
+            </h3>
+            <button onClick={() => setAiAnalysis(null)} className="text-zinc-400 hover:text-zinc-600">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+          {aiAnalysis.summary && <p className="text-sm text-zinc-700">{aiAnalysis.summary}</p>}
+          {aiAnalysis.key_insights?.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-zinc-600 mb-1">Key Insights</p>
+              <ul className="space-y-1">{aiAnalysis.key_insights.map((ins: string, i: number) => <li key={i} className="text-sm text-zinc-700 flex gap-2"><span className="text-purple-500">•</span>{ins}</li>)}</ul>
+            </div>
+          )}
+          {aiAnalysis.recommendations?.length > 0 && (
+            <div>
+              <p className="text-xs font-semibold text-zinc-600 mb-1">Recommendations</p>
+              <ul className="space-y-1">{aiAnalysis.recommendations.map((rec: string, i: number) => <li key={i} className="text-sm text-zinc-700 flex gap-2"><span className="text-brand-500">→</span>{rec}</li>)}</ul>
+            </div>
+          )}
         </div>
       )}
     </div>
