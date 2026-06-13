@@ -44,9 +44,9 @@ SET row_security = off;
 --
 
 INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encrypted_password", "email_confirmed_at", "invited_at", "confirmation_token", "confirmation_sent_at", "recovery_token", "recovery_sent_at", "email_change_token_new", "email_change", "email_change_sent_at", "last_sign_in_at", "raw_app_meta_data", "raw_user_meta_data", "is_super_admin", "created_at", "updated_at", "phone", "phone_confirmed_at", "phone_change", "phone_change_token", "phone_change_sent_at", "email_change_token_current", "email_change_confirm_status", "banned_until", "reauthentication_token", "reauthentication_sent_at", "is_sso_user", "deleted_at", "is_anonymous") VALUES
-	(NULL, 'b0000000-0000-0000-0000-000000000001', NULL, 'authenticated', 'admin@tamayuz.sa', '$2a$06$q.6saHAMboedOAzEPgaUnOagfsU/9l8LCm0nLpEiUSHrOPI7IzWBC', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	(NULL, 'b0000000-0000-0000-0000-000000000002', NULL, 'authenticated', 'manager@tamayuz.sa', '$2a$06$J9QeVEnaydQo7o5D.y5h6e6I.N7hPdZhfGFq8HWfPGskMskYWf.au', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	(NULL, 'b0000000-0000-0000-0000-000000000003', NULL, 'authenticated', 'inspector@tamayuz.sa', '$2a$06$wqrIR2np44T75XUtJCfwvuI.2gaV9MiiRPetGPVKH/F/xOmX5MELS', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	(NULL, 'b0000000-0000-0000-0000-000000000001', NULL, 'authenticated', 'admin@lvlup.sa', '$2a$06$q.6saHAMboedOAzEPgaUnOagfsU/9l8LCm0nLpEiUSHrOPI7IzWBC', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	(NULL, 'b0000000-0000-0000-0000-000000000002', NULL, 'authenticated', 'manager@lvlup.sa', '$2a$06$J9QeVEnaydQo7o5D.y5h6e6I.N7hPdZhfGFq8HWfPGskMskYWf.au', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	(NULL, 'b0000000-0000-0000-0000-000000000003', NULL, 'authenticated', 'inspector@lvlup.sa', '$2a$06$wqrIR2np44T75XUtJCfwvuI.2gaV9MiiRPetGPVKH/F/xOmX5MELS', '2026-06-13 07:03:33.448534+00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -54,9 +54,9 @@ INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encryp
 --
 
 INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "provider", "last_sign_in_at", "created_at", "updated_at", "id") VALUES
-	('admin@tamayuz.sa', 'b0000000-0000-0000-0000-000000000001', '{"sub": "b0000000-0000-0000-0000-000000000001", "email": "admin@tamayuz.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000001'),
-	('manager@tamayuz.sa', 'b0000000-0000-0000-0000-000000000002', '{"sub": "b0000000-0000-0000-0000-000000000002", "email": "manager@tamayuz.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000002'),
-	('inspector@tamayuz.sa', 'b0000000-0000-0000-0000-000000000003', '{"sub": "b0000000-0000-0000-0000-000000000003", "email": "inspector@tamayuz.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000003');
+	('admin@lvlup.sa', 'b0000000-0000-0000-0000-000000000001', '{"sub": "b0000000-0000-0000-0000-000000000001", "email": "admin@lvlup.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000001'),
+	('manager@lvlup.sa', 'b0000000-0000-0000-0000-000000000002', '{"sub": "b0000000-0000-0000-0000-000000000002", "email": "manager@lvlup.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000002'),
+	('inspector@lvlup.sa', 'b0000000-0000-0000-0000-000000000003', '{"sub": "b0000000-0000-0000-0000-000000000003", "email": "inspector@lvlup.sa"}', 'email', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', '2026-06-13 07:04:06.002908+00', 'b0000000-0000-0000-0000-000000000003');
 
 
 --
@@ -166,7 +166,7 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 --
 
 INSERT INTO "public"."organizations" ("id", "name", "slug", "logo_url", "industry", "plan_type", "billing_status", "trial_ends_at", "settings", "is_active", "created_at", "updated_at") VALUES
-	('a0000000-0000-0000-0000-000000000001', 'شركة التميز للجودة', 'tamayuz', NULL, 'restaurant', 'growth', 'active', NULL, '{}', true, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
+	('a0000000-0000-0000-0000-000000000001', 'شركة لفل أب', 'lvlup', NULL, 'restaurant', 'growth', 'active', NULL, '{}', true, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
 	('a0000000-0000-0000-0000-000000000002', 'مؤسسة الإتقان للتجارة', 'itqan', NULL, 'retail', 'free', 'trialing', NULL, '{}', true, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00');
 
 
@@ -175,9 +175,9 @@ INSERT INTO "public"."organizations" ("id", "name", "slug", "logo_url", "industr
 --
 
 INSERT INTO "public"."users" ("id", "org_id", "email", "full_name", "phone", "role", "avatar_url", "password_hash", "is_active", "language", "last_login", "created_at", "updated_at") VALUES
-	('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'admin@tamayuz.sa', 'أحمد العلي', NULL, 'org_admin', NULL, '$2a$06$mkspik.PThhfyT5eFDuBie8eNkvGQ/Ne1EtAqiKGYza5sTRApTE2C', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
-	('b0000000-0000-0000-0000-000000000002', 'a0000000-0000-0000-0000-000000000001', 'manager@tamayuz.sa', 'سارة خالد', NULL, 'manager', NULL, '$2a$06$Vm6kIWnUqeiZ.WgW2.oZXukYWbXyeOr6uJv7Iu98gEiVk5wtnH4Qy', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
-	('b0000000-0000-0000-0000-000000000003', 'a0000000-0000-0000-0000-000000000001', 'inspector@tamayuz.sa', 'فيصل عمر', NULL, 'inspector', NULL, '$2a$06$dnk.MxuRUHObL3DwUkkaFu/2nr8GT8BuOc3k0lPY/.BGnx6jiGGJe', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00');
+	('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'admin@lvlup.sa', 'أحمد العلي', NULL, 'org_admin', NULL, '$2a$06$mkspik.PThhfyT5eFDuBie8eNkvGQ/Ne1EtAqiKGYza5sTRApTE2C', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
+	('b0000000-0000-0000-0000-000000000002', 'a0000000-0000-0000-0000-000000000001', 'manager@lvlup.sa', 'سارة خالد', NULL, 'manager', NULL, '$2a$06$Vm6kIWnUqeiZ.WgW2.oZXukYWbXyeOr6uJv7Iu98gEiVk5wtnH4Qy', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00'),
+	('b0000000-0000-0000-0000-000000000003', 'a0000000-0000-0000-0000-000000000001', 'inspector@lvlup.sa', 'فيصل عمر', NULL, 'inspector', NULL, '$2a$06$dnk.MxuRUHObL3DwUkkaFu/2nr8GT8BuOc3k0lPY/.BGnx6jiGGJe', true, 'ar', NULL, '2026-06-13 07:01:58.513031+00', '2026-06-13 07:01:58.513031+00');
 
 
 --

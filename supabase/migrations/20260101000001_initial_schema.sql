@@ -554,15 +554,15 @@ GROUP BY org_id, branch_id, severity, status;
 -- Demo organization
 INSERT INTO organizations (id, name, slug, industry, plan_type, billing_status)
 VALUES
-  ('a0000000-0000-0000-0000-000000000001', 'شركة التميز للجودة', 'tamayuz', 'restaurant', 'growth', 'active'),
+  ('a0000000-0000-0000-0000-000000000001', 'شركة لفل أب', 'lvlup', 'restaurant', 'growth', 'active'),
   ('a0000000-0000-0000-0000-000000000002', 'مؤسسة الإتقان للتجارة', 'itqan', 'retail', 'free', 'trialing');
 
 -- Demo admin user (password: demo123456)
 INSERT INTO users (id, org_id, email, full_name, role, password_hash, language)
 VALUES
-  ('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'admin@tamayuz.sa', 'أحمد العلي', 'org_admin', crypt('demo123456', gen_salt('bf')), 'ar'),
-  ('b0000000-0000-0000-0000-000000000002', 'a0000000-0000-0000-0000-000000000001', 'manager@tamayuz.sa', 'سارة خالد', 'manager', crypt('demo123456', gen_salt('bf')), 'ar'),
-  ('b0000000-0000-0000-0000-000000000003', 'a0000000-0000-0000-0000-000000000001', 'inspector@tamayuz.sa', 'فيصل عمر', 'inspector', crypt('demo123456', gen_salt('bf')), 'ar');
+  ('b0000000-0000-0000-0000-000000000001', 'a0000000-0000-0000-0000-000000000001', 'admin@lvlup.sa', 'أحمد العلي', 'org_admin', crypt('demo123456', gen_salt('bf')), 'ar'),
+  ('b0000000-0000-0000-0000-000000000002', 'a0000000-0000-0000-0000-000000000001', 'manager@lvlup.sa', 'سارة خالد', 'manager', crypt('demo123456', gen_salt('bf')), 'ar'),
+  ('b0000000-0000-0000-0000-000000000003', 'a0000000-0000-0000-0000-000000000001', 'inspector@lvlup.sa', 'فيصل عمر', 'inspector', crypt('demo123456', gen_salt('bf')), 'ar');
 
 -- Demo branches
 INSERT INTO branches (id, org_id, name, city)

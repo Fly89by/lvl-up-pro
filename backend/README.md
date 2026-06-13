@@ -59,6 +59,6 @@ npx supabase db dump --local --data-only --file supabase/seed.sql
 
 | Email | Password | Role |
 |-------|----------|------|
-| admin@tamayuz.sa | demo123456 | Org Admin |
-| manager@tamayuz.sa | demo123456 | Manager |
-| inspector@tamayuz.sa | demo123456 | Inspector |
+| admin@lvlup.sa | demo123456 | Org Admin |
+| manager@lvlup.sa | demo123456 | Manager |
+| inspector@lvlup.sa | demo123456 | Inspector |
