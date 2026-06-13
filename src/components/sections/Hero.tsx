@@ -4,18 +4,17 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { ArrowRight, BarChart3, Shield, Zap, Play } from "lucide-react";
 import { motion } from "framer-motion";
+import GlassyOrb from "@/components/ui/GlassyOrb";
 
 export default function Hero() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-surface-950">
-      <div className="absolute inset-0 bg-grid opacity-20" />
-      <div className="glow-orb glow-orb-1 animate-orb-drift" />
-      <div className="glow-orb glow-orb-2 animate-orb-drift-2" />
-      <div className="glow-orb glow-orb-3 animate-pulse-glow" />
-      <div className="hero-glow top-[-200px] left-[-200px]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/3 rounded-full blur-[150px]" />
+    <section className="relative min-h-screen flex items-center pt-24 md:pt-20 overflow-hidden bg-surface-950">
+      <div className="absolute inset-0 bg-grid opacity-15 z-0" />
+      <GlassyOrb className="top-[-200px] right-[-150px] w-[600px] h-[600px] animate-orb-drift" />
+      <GlassyOrb className="bottom-[-250px] left-[-150px] w-[500px] h-[500px] animate-orb-drift-2" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-brand-500/3 rounded-full blur-[120px] z-0" />
 
       <div className="container-main relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
