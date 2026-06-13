@@ -57,7 +57,7 @@ export default function RegisterPage() {
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:shadow-brand-500/40 transition-all">
               <BarChart3 className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-white">Tamayuz</span>
+            <span className="text-lg font-bold text-white">LVL UP</span>
           </Link>
           <h1 className="text-2xl font-bold text-white">Create Account</h1>
           <p className="text-surface-400 mt-1">Start your free trial</p>

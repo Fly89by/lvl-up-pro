@@ -36,14 +36,14 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="glass border-b border-brand-500/10">
+      <div className="liquid-glass border-b border-brand-500/5" style={{ borderRadius: 0 }}>
         <div className="container-main">
           <div className="flex items-center justify-between h-16 md:h-18">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/25 group-hover:shadow-brand-500/40 transition-all duration-300 group-hover:scale-105">
                 <BarChart3 className="w-5 h-5 text-white" />
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">Tamayuz</span>
+              <span className="text-lg font-bold text-white tracking-wide">LVL UP</span>
             </Link>
 
             <nav className="hidden lg:flex items-center gap-1">
@@ -54,21 +54,21 @@ export default function Navbar() {
                       onMouseEnter={() => setIsProductsOpen(true)}
                       onMouseLeave={() => setIsProductsOpen(false)}
                     >
-                      <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200">
+                      <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-brand-500/10 transition-all duration-200">
                         {t("products")}
                         <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200" style={{ transform: isProductsOpen ? "rotate(180deg)" : "rotate(0)" }} />
                       </button>
                       {isProductsOpen && (
                         <div className="absolute top-full start-0 mt-1 w-56 glass-card rounded-xl py-2 animate-scale-in">
-                          <Link href="/dashboard" className="block px-4 py-3 hover:bg-white/5 transition-all duration-150">
+                          <Link href="/dashboard" className="block px-4 py-3 hover:bg-brand-500/10 transition-all duration-150">
                             <div className="text-sm font-medium text-white">{t("productsDropdown.platform")}</div>
                             <div className="text-xs text-surface-400">{t("productsDropdown.platformDesc")}</div>
                           </Link>
-                          <Link href="/dashboard/branches" className="block px-4 py-3 hover:bg-white/5 transition-all duration-150">
+                          <Link href="/dashboard/branches" className="block px-4 py-3 hover:bg-brand-500/10 transition-all duration-150">
                             <div className="text-sm font-medium text-white">{t("productsDropdown.industries")}</div>
                             <div className="text-xs text-surface-400">{t("productsDropdown.industriesDesc")}</div>
                           </Link>
-                          <Link href="/dashboard/templates" className="block px-4 py-3 hover:bg-white/5 transition-all duration-150">
+                          <Link href="/dashboard/templates" className="block px-4 py-3 hover:bg-brand-500/10 transition-all duration-150">
                             <div className="text-sm font-medium text-white">{t("productsDropdown.library")}</div>
                             <div className="text-xs text-surface-400">{t("productsDropdown.libraryDesc")}</div>
                           </Link>
@@ -81,7 +81,7 @@ export default function Navbar() {
                   return (
                     <a key={section.key} href={section.href}
                       onClick={(e) => handleNavClick(e, section.href)}
-                      className="px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
+                      className="px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-brand-500/10 transition-all duration-200"
                     >
                       {t(section.key)}
                     </a>
@@ -89,7 +89,7 @@ export default function Navbar() {
                 }
                 return (
                   <Link key={section.key} href={section.href}
-                    className="px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-200"
+                    className="px-4 py-2 text-sm font-medium text-surface-400 hover:text-white rounded-lg hover:bg-brand-500/10 transition-all duration-200"
                   >
                     {t(section.key)}
                   </Link>
@@ -110,13 +110,13 @@ export default function Navbar() {
                   <div className="absolute top-full end-0 mt-1 w-32 glass-card rounded-xl py-1 animate-scale-in">
                     <Link href={pathname} locale="ar" onClick={() => setIsLangOpen(false)}
                       className={`block w-full text-center px-4 py-2 text-sm transition-all duration-150 ${
-                        locale === "ar" ? "text-brand-400 font-medium bg-white/5" : "text-surface-400 hover:text-white hover:bg-white/5"
+                        locale === "ar" ? "text-brand-400 font-medium bg-brand-500/10" : "text-surface-400 hover:text-white hover:bg-brand-500/10"
                       }`}>
                       العربية
                     </Link>
                     <Link href={pathname} locale="en" onClick={() => setIsLangOpen(false)}
                       className={`block w-full text-center px-4 py-2 text-sm transition-all duration-150 ${
-                        locale === "en" ? "text-brand-400 font-medium bg-white/5" : "text-surface-400 hover:text-white hover:bg-white/5"
+                        locale === "en" ? "text-brand-400 font-medium bg-brand-500/10" : "text-surface-400 hover:text-white hover:bg-brand-500/10"
                       }`}>
                       English
                     </Link>
@@ -142,7 +142,7 @@ export default function Navbar() {
             {navSections.map((section) => (
               <a key={section.key} href={section.href}
                 onClick={(e) => handleNavClick(e, section.href)}
-                className="block text-sm font-medium text-surface-400 hover:text-white py-2.5 px-3 rounded-lg hover:bg-white/5 transition-colors"
+                className="block text-sm font-medium text-surface-400 hover:text-white py-2.5 px-3 rounded-lg hover:bg-brand-500/10 transition-colors"
               >
                 {t(section.key)}
               </a>

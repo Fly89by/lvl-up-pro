@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center">
                 <LayoutDashboard className="w-4 h-4 text-white" />
               </div>
-              <span className="font-bold text-white">Tamayuz</span>
+              <span className="font-bold text-white">LVL UP</span>
             </Link>
           )}
           {!sidebarOpen && <Link href="/"><div className="w-7 h-7 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 mx-auto" /></Link>}

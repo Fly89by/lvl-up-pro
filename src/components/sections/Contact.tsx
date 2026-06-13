@@ -31,7 +31,7 @@ export default function Contact() {
             className="lg:col-span-2 space-y-4"
           >
             {[
-              { icon: Mail, label: "Email", value: "hello@tamayuz.sa" },
+              { icon: Mail, label: "Email", value: "hello@lvlup.sa" },
               { icon: Phone, label: "Phone", value: "+966 55 123 4567" },
               { icon: MapPin, label: "Location", value: "Riyadh, Saudi Arabia" },
             ].map((item) => (

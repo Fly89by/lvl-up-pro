@@ -11,7 +11,7 @@ interface Message {
 export default function AIAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "assistant", content: "Hi! I'm Tamayuz AI. Ask me about your branches, inspections, tasks, or performance data." },
+    { role: "assistant", content: "Hi! I'm LVL UP AI. Ask me about your branches, inspections, tasks, or performance data." },
   ]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -68,7 +68,7 @@ export default function AIAssistant() {
           <div className="flex items-center justify-between px-4 py-3 border-b border-brand-500/10 bg-gradient-to-r from-brand-600 to-brand-700">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-white" />
-              <span className="font-semibold text-sm text-white">Tamayuz AI</span>
+              <span className="font-semibold text-sm text-white">LVL UP AI</span>
               <Sparkles className="w-3 h-3 text-amber-300" />
             </div>
             <button onClick={() => setOpen(false)} className="p-1 hover:bg-white/20 rounded-lg transition-colors text-white">

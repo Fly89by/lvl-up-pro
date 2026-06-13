@@ -10,11 +10,11 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-surface-950">
-      <div className="absolute inset-0 bg-grid opacity-30" />
+      <div className="absolute inset-0 bg-grid opacity-20" />
+      <div className="glow-orb glow-orb-1 animate-orb-drift" />
+      <div className="glow-orb glow-orb-2 animate-orb-drift-2" />
+      <div className="glow-orb glow-orb-3 animate-pulse-glow" />
       <div className="hero-glow top-[-200px] left-[-200px]" />
-      <div className="hero-glow bottom-[-300px] right-[-200px]"
-        style={{ background: "radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%)" }}
-      />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-500/3 rounded-full blur-[150px]" />
 
       <div className="container-main relative z-10">

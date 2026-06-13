@@ -16,7 +16,7 @@ const notoKufi = Noto_Kufi_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "Tamayuz — Branch Performance Analytics Platform",
+  title: "LVL UP — Branch Performance Analytics Platform",
   description: "AI-powered platform for branch performance analysis, smart inspection, and operational excellence.",
 };
 
