@@ -33,8 +33,20 @@ export async function proxy(request: NextRequest) {
   await supabase.auth.getUser();
 
   const intlResponse = intlMiddleware(request);
+
   if (intlResponse && (intlResponse.status === 307 || intlResponse.status === 308)) {
     return intlResponse;
+  }
+
+  if (intlResponse) {
+    const clone = new Response(intlResponse.body, intlResponse);
+    if (typeof response.headers.getSetCookie === "function") {
+      const cookies = response.headers.getSetCookie();
+      for (const cookie of cookies) {
+        clone.headers.append("Set-Cookie", cookie);
+      }
+    }
+    return clone;
   }
 
   return response;
