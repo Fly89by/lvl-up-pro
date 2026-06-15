@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
+  const t = useTranslations("auth");
   const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,14 +31,14 @@ export default function RegisterPage() {
     }
 
     if (!user) {
-      setError("Registration failed");
+      setError(t("regFailed"));
       setLoading(false);
       return;
     }
 
     const { error: orgError } = await supabase.from("organizations").insert({ name: orgName || "My Organization" }).select().single();
     if (orgError) {
-      setError("Failed to create organization");
+      setError(t("orgFailed"));
       setLoading(false);
       return;
     }
@@ -59,42 +61,42 @@ export default function RegisterPage() {
             </div>
             <span className="text-lg font-bold text-white">LVL UP</span>
           </Link>
-          <h1 className="text-2xl font-bold text-white">Create Account</h1>
-          <p className="text-surface-400 mt-1">Start your free trial</p>
+          <h1 className="text-2xl font-bold text-white">{t("signUp")}</h1>
+          <p className="text-surface-400 mt-1">{t("startTrial")}</p>
         </div>
 
         <form onSubmit={handleRegister} className="glass-card rounded-2xl p-8 space-y-5 animate-fade-in-up">
           <div>
-            <label className="block text-sm font-medium text-surface-300 mb-1.5">Organization Name</label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">{t("orgName")}</label>
             <input type="text" value={orgName} onChange={(e) => setOrgName(e.target.value)} required
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors"
-              placeholder="Your Company"
+              placeholder={t("orgNamePlaceholder")}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-300 mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">{t("email")}</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors"
-              placeholder="you@company.com"
+              placeholder={t("emailRegPlaceholder")}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-300 mb-1.5">Password</label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">{t("password")}</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors"
-              placeholder="Min 6 characters"
+              placeholder={t("minChars")}
             />
           </div>
 
           {error && <div className="text-sm text-red-400 bg-red-500/10 rounded-xl px-4 py-3 border border-red-500/20">{error}</div>}
 
           <button type="submit" disabled={loading} className="w-full btn-primary py-3.5">
-            {loading ? "Creating account..." : "Create Account"}
+            {loading ? t("creating") : t("signUp")}
           </button>
 
           <p className="text-center text-sm text-surface-500">
-            Already have an account?{" "}
-            <Link href="/login" className="text-brand-400 hover:text-brand-300 font-medium transition-colors">Sign in</Link>
+            {t("hasAccount")}{" "}
+            <Link href="/login" className="text-brand-400 hover:text-brand-300 font-medium transition-colors">{t("signInHere")}</Link>
           </p>
         </form>
       </div>

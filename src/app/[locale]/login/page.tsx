@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { BarChart3 } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const t = useTranslations("auth");
   const supabase = createClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +24,7 @@ export default function LoginPage() {
     const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
 
     if (authError) {
-      setError(authError.message === "Invalid login credentials" ? "Invalid email or password" : authError.message);
+      setError(authError.message === "Invalid login credentials" ? t("invalidCredentials") : authError.message);
       setLoading(false);
       return;
     }
@@ -45,35 +47,35 @@ export default function LoginPage() {
             </div>
             <span className="text-lg font-bold text-white">LVL UP</span>
           </Link>
-          <h1 className="text-2xl font-bold text-white">Sign In</h1>
-          <p className="text-surface-400 mt-1">Access your account</p>
+          <h1 className="text-2xl font-bold text-white">{t("signIn")}</h1>
+          <p className="text-surface-400 mt-1">{t("accessAccount")}</p>
         </div>
 
         <form onSubmit={handleLogin} className="glass-card rounded-2xl p-8 space-y-5 animate-fade-in-up">
           <div>
-            <label className="block text-sm font-medium text-surface-300 mb-1.5">Email</label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">{t("email")}</label>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors"
-              placeholder="admin@lvlup.sa"
+              placeholder={t("emailPlaceholder")}
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-surface-300 mb-1.5">Password</label>
+            <label className="block text-sm font-medium text-surface-300 mb-1.5">{t("password")}</label>
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required
               className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder:text-surface-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors"
-              placeholder="Enter your password"
+              placeholder={t("enterPassword")}
             />
           </div>
 
           {error && <div className="text-sm text-red-400 bg-red-500/10 rounded-xl px-4 py-3 border border-red-500/20">{error}</div>}
 
           <button type="submit" disabled={loading} className="w-full btn-primary py-3.5">
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? t("signingIn") : t("signIn")}
           </button>
 
           <p className="text-center text-sm text-surface-500">
-            Don&apos;t have an account?{" "}
-            <Link href="/register" className="text-brand-400 hover:text-brand-300 font-medium transition-colors">Create one</Link>
+            {t("noAccount")}{" "}
+            <Link href="/register" className="text-brand-400 hover:text-brand-300 font-medium transition-colors">{t("createOne")}</Link>
           </p>
         </form>
       </div>

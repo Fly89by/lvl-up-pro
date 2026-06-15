@@ -32,7 +32,7 @@ describe("Login Page", () => {
   it("shows login form heading", async () => {
     const Page = (await import("@/app/[locale]/login/page")).default;
     render(<Page />);
-    expect(screen.getByRole("heading", { name: "Sign In" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "signIn" })).toBeInTheDocument();
   });
 });
 
@@ -40,7 +40,7 @@ describe("Register Page", () => {
   it("shows register form heading", async () => {
     const Page = (await import("@/app/[locale]/register/page")).default;
     render(<Page />);
-    expect(screen.getByRole("heading", { name: "Create Account" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "signUp" })).toBeInTheDocument();
   });
 });
 

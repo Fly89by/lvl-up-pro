@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Kufi_Arabic } from "next/font/google";
+import { Inter, Tajawal } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,11 +8,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const notoKufi = Noto_Kufi_Arabic({
-  variable: "--font-noto-kufi",
+const tajawal = Tajawal({
+  variable: "--font-tajawal",
   subsets: ["arabic"],
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html className={`${inter.variable} ${notoKufi.variable} h-full antialiased`}>
+    <html className={`${inter.variable} ${tajawal.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-surface-950 text-surface-50">{children}</body>
     </html>
   );

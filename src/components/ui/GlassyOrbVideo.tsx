@@ -11,7 +11,7 @@ export default function GlassyOrbVideo() {
         className="w-full h-full object-contain scale-125"
         style={{
           mixBlendMode: "screen",
-          filter: "hue-rotate(-55deg) saturate(250%) brightness(1.2) contrast(1.1)",
+          filter: "hue-rotate(-120deg) saturate(200%) brightness(1.3) contrast(1.0)",
         }}
       >
         <source src="https://future.co/images/homepage/glassy-orb/orb-purple.webm" type="video/webm" />
